@@ -1,0 +1,16 @@
+*.a
+*.dll
+*.o
+*.qm
+*.so*
+.*.swp
+.*.un~
+.qmake.stash
+Makefile*
+html
+latex
+libmcc.pro.user
+moc_*.cpp
+moc_predefs.h
+object_script.mcc*
+qrc_*.cpp
