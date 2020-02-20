@@ -37,7 +37,9 @@
 #include <QString>
 #include <initializer_list>
 
-class SettingsKey
+#include "libmcc_global.h"
+
+class LIBMCC_EXPORT SettingsKey
 {
   public:
     SettingsKey( const QString & name );
