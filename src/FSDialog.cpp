@@ -57,7 +57,7 @@ FSDialog::openFileName( QWidget * parent, const QString & caption,
 						  filter + s_allFiles, nullptr, options );
 
 	if ( ! file_name.isEmpty() )
-		Settings::setValue( param_name, QFileInfo( file_name ).path(), FS_GROUP );
+		Settings::setValue( param_name, FS_GROUP, QFileInfo( file_name ).path() );
 
 	return file_name;
 }
@@ -73,7 +73,7 @@ FSDialog::saveFileName( QWidget * parent, const QString & caption, const QString
 						  filter + s_allFiles, nullptr, options );
 
 	if ( ! file_name.isEmpty() )
-		Settings::setValue( param_name, QFileInfo( file_name ).path(), FS_GROUP );
+		Settings::setValue( param_name, FS_GROUP, QFileInfo( file_name ).path() );
 
 	return file_name;
 }
@@ -88,7 +88,7 @@ FSDialog::directoryName( QWidget * parent, const QString & caption,
 						  options );
 
 	if ( ! dir_name.isEmpty() )
-		Settings::setValue( param_name, dir_name, FS_GROUP );
+		Settings::setValue( param_name, FS_GROUP, dir_name );
 
 	return dir_name;
 }
