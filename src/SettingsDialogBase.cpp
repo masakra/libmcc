@@ -42,6 +42,9 @@
 #define GROUP QStringLiteral("DialogSettings")
 #define STACK_INDEX QStringLiteral("StackIndex")
 
+#define ICON_SIZE 64
+#define SPACING 8
+
 SettingsDialogBase::SettingsDialogBase( QWidget * parent )
 	: Dialog( parent )
 {
@@ -95,12 +98,15 @@ SettingsDialogBase::~SettingsDialogBase()
 void
 SettingsDialogBase::createWidgets()
 {
+  // scroll bar width
+  const int sbw = qApp->style()->pixelMetric( QStyle::PM_ScrollBarExtent );
+
 	m_pager = new QListWidget( this );
 	m_pager->setViewMode( QListView::IconMode );
-	m_pager->setIconSize( QSize( 64, 64 ) );
+	m_pager->setIconSize( QSize( ICON_SIZE, ICON_SIZE ) );
 	m_pager->setMovement( QListView::Static );
-	m_pager->setMaximumWidth( 128 );
-	m_pager->setSpacing( 6 );
+	m_pager->setFixedWidth( ICON_SIZE + SPACING + SPACING + sbw + 7 );
+	m_pager->setSpacing( SPACING );
   m_pager->setItemAlignment( Qt::AlignCenter );
 
 	m_stack = new QStackedWidget( this );

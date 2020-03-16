@@ -32,8 +32,8 @@
 <context>
     <name>SettingsDialogBase</name>
     <message>
-        <location filename="../src/SettingsDialogBase.cpp" line="48"/>
-        <location filename="../src/SettingsDialogBase.cpp" line="118"/>
+        <location filename="../src/SettingsDialogBase.cpp" line="51"/>
+        <location filename="../src/SettingsDialogBase.cpp" line="124"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
