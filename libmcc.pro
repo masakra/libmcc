@@ -44,12 +44,14 @@ HEADERS += src/Application.h \
            src/ColorPicker.h \
            src/ComboBox.h \
            src/Dialog.h \
+           src/DoubleSpinBox.h \
            src/FSDialog.h \
            src/Frame.h \
            src/Label.h \
            src/Settings.h \
            src/SettingsDialogBase.h \
            src/SettingsKey.h \
+           src/SpinBox.h \
            src/Version.h \
            src/libmcc_global.h
 
@@ -59,12 +61,14 @@ SOURCES += src/Application.cpp \
            src/ColorPicker.cpp \
            src/ComboBox.cpp \
            src/Dialog.cpp \
+           src/DoubleSpinBox.cpp \
            src/FSDialog.cpp \
            src/Frame.cpp \
            src/Label.cpp \
            src/Settings.cpp \
            src/SettingsDialogBase.cpp \
            src/SettingsKey.cpp \
+           src/SpinBox.cpp \
            src/Version.cpp
 
 TRANSLATIONS = translations/libmcc_ru.ts
