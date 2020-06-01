@@ -47,13 +47,13 @@ class LIBMCC_EXPORT FSDialog
 	public:
 		static QString openFileName( QWidget * parent, const QString & caption,
 				const QString & suffix = QString(), const QString & filter = QString(),
-				QFileDialog::Options options = 0 );
+				QFileDialog::Options options = QFileDialog::Options() );
 
 		static QString saveFileName( QWidget * parent, const QString & caption,
 				const QString & suffix = QString(), const QString & filter = QString(),
-				const QString & fileName = QString(), QFileDialog::Options options = 0 );
+				const QString & fileName = QString(), QFileDialog::Options options = QFileDialog::Options() );
 
 		static QString directoryName( QWidget * parent, const QString & caption,
-				const QString & suffix = QString(), QFileDialog::Options options = 0 );
+				const QString & suffix = QString(), QFileDialog::Options options = QFileDialog::Options() );
 };
 

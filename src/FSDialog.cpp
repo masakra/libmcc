@@ -48,48 +48,48 @@ QString s_allFiles = QObject::tr(";;All files (* *.*)");
 
 QString
 FSDialog::openFileName( QWidget * parent, const QString & caption,
-		const QString & suffix, const QString & filter,
-		QFileDialog::Options options )
+    const QString & suffix, const QString & filter,
+    QFileDialog::Options options/*= QFileDialog::Options()*/)
 {
-	const QString param_name = "OpenFileName_" + suffix,
-				  file_name = QFileDialog::getOpenFileName( parent, caption,
-						  Settings::value( param_name, FS_GROUP, DEF_PATH ).toString(),
-						  filter + s_allFiles, nullptr, options );
+  const QString param_name = QStringLiteral("OpenFileName_") + suffix,
+                file_name = QFileDialog::getOpenFileName( parent, caption,
+                    Settings::value( param_name, FS_GROUP, DEF_PATH ).toString(),
+                    filter + s_allFiles, nullptr, options );
 
-	if ( ! file_name.isEmpty() )
-		Settings::setValue( param_name, FS_GROUP, QFileInfo( file_name ).path() );
+  if ( ! file_name.isEmpty() )
+    Settings::setValue( param_name, FS_GROUP, QFileInfo( file_name ).path() );
 
-	return file_name;
+  return file_name;
 }
 
 QString
 FSDialog::saveFileName( QWidget * parent, const QString & caption, const QString & suffix,
-		const QString & filter, const QString & fileName, QFileDialog::Options options )
+    const QString & filter, const QString & fileName, QFileDialog::Options options/*= QFileDialog::Options()*/)
 {
-	const QString param_name = "SaveFileName_" + suffix,
-				  file_name = QFileDialog::getSaveFileName( parent, caption,
-						  Settings::value( param_name, FS_GROUP, DEF_PATH ).toString() +
-						  ( ! fileName.isEmpty() ? ( QDir::separator() + fileName ) : QString() ),
-						  filter + s_allFiles, nullptr, options );
+  const QString param_name = QStringLiteral("SaveFileName_") + suffix,
+                file_name = QFileDialog::getSaveFileName( parent, caption,
+                    Settings::value( param_name, FS_GROUP, DEF_PATH ).toString() +
+                    ( ! fileName.isEmpty() ? ( QDir::separator() + fileName ) : QString() ),
+                    filter + s_allFiles, nullptr, options );
 
-	if ( ! file_name.isEmpty() )
-		Settings::setValue( param_name, FS_GROUP, QFileInfo( file_name ).path() );
+  if ( ! file_name.isEmpty() )
+    Settings::setValue( param_name, FS_GROUP, QFileInfo( file_name ).path() );
 
-	return file_name;
+  return file_name;
 }
 
 QString
 FSDialog::directoryName( QWidget * parent, const QString & caption,
-		const QString & suffix, QFileDialog::Options options )
+    const QString & suffix, QFileDialog::Options options/*= QFileDialog::Options()*/)
 {
-	const QString param_name = "DirectoryName_" + suffix,
-				  dir_name = QFileDialog::getExistingDirectory( parent, caption,
-						  Settings::value( param_name, FS_GROUP, DEF_PATH ).toString(),
-						  options );
+  const QString param_name = QStringLiteral("DirectoryName_") + suffix,
+                dir_name = QFileDialog::getExistingDirectory( parent, caption,
+                    Settings::value( param_name, FS_GROUP, DEF_PATH ).toString(),
+                    options );
 
-	if ( ! dir_name.isEmpty() )
-		Settings::setValue( param_name, FS_GROUP, dir_name );
+  if ( ! dir_name.isEmpty() )
+    Settings::setValue( param_name, FS_GROUP, dir_name );
 
-	return dir_name;
+  return dir_name;
 }
 
