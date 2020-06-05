@@ -35,9 +35,9 @@
 
 #include "Frame.h"
 
-Frame::Frame( Shape shape, QWidget * parent, Qt::WindowFlags flags )
-	: QFrame( parent, flags )
+Frame::Frame( Shape shape, QWidget * parent, Qt::WindowFlags flags/*= Qt::WindowFlags()*/)
+  : QFrame( parent, flags )
 {
-	setFrameShape( shape );
+  setFrameShape( shape );
 }
 
