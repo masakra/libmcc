@@ -39,7 +39,7 @@
 
 #include "ButtonsLine.h"
 
-#define GROUP QStringLiteral("DialogSettings")
+#define GROUP metaObject()->className()
 #define STACK_INDEX QStringLiteral("StackIndex")
 
 #define ICON_SIZE 64
@@ -74,7 +74,6 @@ SettingsDialogBase::SettingsDialogBase( const QList< SettingsKey > & watch,
 		std::function< void( const SettingsKey &, const QVariant & ) > func, QWidget * parent )
 	: SettingsDialogBase( watch, parent )
 {
-	//connect( this, QOverload< const QString & >::of( &SettingsDialogBase::watchValueChanged ), func );
 	connect( this, static_cast< void( SettingsDialogBase::* )( const SettingsKey &, const QVariant & ) const >
       ( &SettingsDialogBase::watchValueChanged ), func );
 }
@@ -161,5 +160,12 @@ SettingsDialogBase::showEvent( QShowEvent * event )
 	move( ( desk.width() - width() ) / 2, ( desk.height() - height() ) / 2 );
 
 	QDialog::showEvent( event );
+}
+
+void
+SettingsDialogBase::accept() // override
+{
+  saveValues();
+  Dialog::accept();
 }
 

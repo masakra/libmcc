@@ -39,9 +39,9 @@
 #include <functional>
 
 /** Чтобы не включать заголовочный файл Settings.h в
- * заголовочные файлы потомков SettingsDialogBase,
- * в которых, как правило, задефайнены имена параметров.
- */
+  * заголовочные файлы потомков SettingsDialogBase,
+  * в которых, как правило, задефайнены имена параметров.
+  */
 #include "Settings.h"
 #include "SettingsKey.h"
 
@@ -51,17 +51,17 @@ class QListWidget;
 class QStackedWidget;
 
 /** Базовый диалог настроек.
- *
- * Удаляется при закрытии.
- *
- * Что бы не блокировал основной цикл обработки сообщений:
- * \code
- * DialogSettings * d = new DialogSettings;
- * d->show();
- *	     //	   или
- * ( new DialogSettings )->show();
- * \endcode
- */
+  *
+  * Удаляется при закрытии.
+  *
+  * Что бы не блокировал основной цикл обработки сообщений:
+  * \code
+  * DialogSettings * d = new DialogSettings;
+  * d->show();
+  *	     //	   или
+  * ( new DialogSettings )->show();
+  * \endcode
+  */
 class LIBMCC_EXPORT SettingsDialogBase : public Dialog
 {
 	Q_OBJECT
@@ -81,21 +81,26 @@ class LIBMCC_EXPORT SettingsDialogBase : public Dialog
 
 	public Q_SLOTS:
 		/**	Отображает диалог и делает активную вкладку с индексом \a tab
-		 *
-		 * Если \a tab == -1 то активной становится вкладка которая была активна
-		 * при закрытии диалога.
-		 */
+      *
+      * Если \a tab == -1 то активной становится вкладка которая была активна
+      * при закрытии диалога.
+      */
 		void show( int tab = -1 );
 
 	Q_SIGNALS:
 		/** Изменилось наблюдаемое значение
-		 */
+		  */
 		void watchValueChanged( const SettingsKey & key, const QVariant & val ) const;
 
 	protected:
     void addPage( const QIcon & icon, const QString & caption, QWidget * page );
 
 		void showEvent( QShowEvent * event ) override final;
+    /** Вызывает saveValues()
+      */
+    void accept() override;
+
+    virtual void saveValues() const = 0;
 
 	private:
 		void createWidgets();
@@ -105,5 +110,6 @@ class LIBMCC_EXPORT SettingsDialogBase : public Dialog
 		QStackedWidget * m_stack;
 
 		QMap< SettingsKey, QVariant > m_watch;
+
 };
 
