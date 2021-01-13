@@ -6,6 +6,7 @@
 .*.swp
 .*.un~
 .qmake.stash
+/.ycm_extra_conf.py
 Makefile*
 html
 latex

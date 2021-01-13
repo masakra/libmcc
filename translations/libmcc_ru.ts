@@ -33,7 +33,7 @@
     <name>SettingsDialogBase</name>
     <message>
         <location filename="../src/SettingsDialogBase.cpp" line="51"/>
-        <location filename="../src/SettingsDialogBase.cpp" line="124"/>
+        <location filename="../src/SettingsDialogBase.cpp" line="123"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>

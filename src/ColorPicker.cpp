@@ -65,7 +65,7 @@ ColorPicker::createWidgets()
 	connect( m_sliderAlpha, &QSlider::valueChanged, m_colorDisplay, &ColorDisplay::setAlpha );
 
 	QHBoxLayout * layout = new QHBoxLayout( this );
-	layout->setMargin( 1 );
+	layout->setContentsMargins( 1, 1, 1, 1 );
 
 	layout->addWidget( m_colorDisplay );
 	layout->addWidget( m_sliderAlpha );
