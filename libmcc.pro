@@ -52,6 +52,7 @@ HEADERS += src/Application.h \
            src/SettingsDialogBase.h \
            src/SettingsKey.h \
            src/SpinBox.h \
+           src/TextLineY.h \
            src/Version.h \
            src/libmcc_global.h
 
@@ -68,6 +69,7 @@ SOURCES += src/Application.cpp \
            src/Settings.cpp \
            src/SettingsDialogBase.cpp \
            src/SettingsKey.cpp \
+           src/TextLineY.cpp \
            src/SpinBox.cpp \
            src/Version.cpp
 
