@@ -37,8 +37,9 @@
 
 #include <QFontMetrics>
 
-TextLineY::TextLineY( const QFont & font, qreal factor/*= 1.5*/)
-  : m_current( .0 )
+TextLineY::TextLineY( const QFont & font, qreal factor/*= 1.5*/,
+    qreal init/*= .0*/)
+  : m_current( init )
 {
   QFontMetrics fm( font );
   m_line_height = fm.height() * factor;

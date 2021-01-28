@@ -43,7 +43,8 @@ class QFont;
 class TextLineY
 {
   public:
-    explicit TextLineY( const QFont & font, qreal factor = 1.5 );
+    explicit TextLineY( const QFont & font, qreal factor = 1.5,
+        qreal init = .0 );
 
     operator qreal() const;
 
