@@ -36,11 +36,13 @@
 
 #include <QtGlobal>
 
+#include "libmcc_global.h"
+
 class QFont;
 
 /** Координата Y для вывода текста построчно
   */
-class TextLineY
+class LIBMCC_EXPORT TextLineY
 {
   public:
     explicit TextLineY( const QFont & font, qreal factor = 1.5,
