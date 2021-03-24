@@ -40,16 +40,24 @@
 #include "libmcc_global.h"
 
 /** \brief 
- */
+  */
 class LIBMCC_EXPORT Dialog : public QDialog
 {
 	Q_OBJECT
 
 	public:
 		explicit Dialog( QWidget * parent = nullptr );
+    /** Сохраняем/восстанавливаем размер и позицию в настройках
+      */
+    explicit Dialog( const QString & settings_name,
+        QWidget * parent = nullptr );
+
+    ~Dialog();
 
 	protected:
 		QDialogButtonBox * buttonBox( QDialogButtonBox::StandardButtons buttons = QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
 
+  private:
+    const QString m_settings_group;
 };
 

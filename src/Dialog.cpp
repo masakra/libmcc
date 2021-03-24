@@ -35,9 +35,35 @@
 
 #include "Dialog.h"
 
+#include "Settings.h"
+
+#define POS QStringLiteral("position")
+#define SIZE QStringLiteral("size")
+
 Dialog::Dialog( QWidget * parent/*= nullptr*/)
 	: QDialog( parent )
 {
+}
+
+Dialog::Dialog( const QString & settings_group,
+    QWidget * parent/*= nullptr*/)
+  : QDialog( parent )
+  , m_settings_group( settings_group )
+{
+  if ( ! settings_group.isEmpty() ) {
+    resize( Settings::value( SIZE, settings_group, QSize( 300, 100 ) )
+        .toSize() );
+    move( Settings::value( POS, settings_group, QPoint( 400, 200 ) )
+        .toPoint() );
+  }
+}
+
+Dialog::~Dialog()
+{
+  if ( ! m_settings_group.isEmpty() ) {
+    Settings::setValue( POS, m_settings_group, pos() );
+    Settings::setValue( SIZE, m_settings_group, size() );
+  }
 }
 
 QDialogButtonBox *

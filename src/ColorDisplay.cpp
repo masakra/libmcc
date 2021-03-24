@@ -116,10 +116,12 @@ ColorDisplay::mousePressEvent( QMouseEvent * event )
 		}
 
 		event->accept();
-	} else if ( event->button() == Qt::RightButton ) {
-		if ( contextMenu( event->globalPos() ) )
+	}
+  else if ( event->button() == Qt::RightButton ) {
+		if ( contextMenu( event->globalPosition().toPoint() ) )
 			event->accept();
-	} else
+	}
+  else
 		QWidget::mousePressEvent( event );
 }
 
@@ -128,7 +130,8 @@ ColorDisplay::contextMenu( const QPoint & pos )
 {
 	QMenu menu;
 
-	menu.addAction( QIcon::fromTheme("edit-copy"), tr("Copy color"), this, SLOT( copyColorToClipboard() ) );
+	menu.addAction( QIcon::fromTheme("edit-copy"), tr("Copy color"),
+      this, SLOT( copyColorToClipboard() ) );
 
 	const QString colorName = qApp->clipboard()->text();
 
@@ -137,7 +140,8 @@ ColorDisplay::contextMenu( const QPoint & pos )
 		QPixmap pixmap( 22, 22 );
 		pixmap.fill( color );
 
-		menu.addAction( QIcon( pixmap ), tr("Paste color <%1>").arg( colorName ), this, SLOT( pasteColorFromClipboard() ) );
+		menu.addAction( QIcon( pixmap ), tr("Paste color <%1>").arg( colorName ),
+        this, SLOT( pasteColorFromClipboard() ) );
 	}
 
 	return menu.exec( pos );

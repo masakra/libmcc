@@ -34,41 +34,41 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #pragma once
 
-#include <QWidget>
+#include <iterator>
+#include <initializer_list>
 
-/** \brief Отображает цвет
-  */
-class ColorDisplay : public QWidget
+template < class T >
+class Range
 {
-	Q_OBJECT
+  public:
+    explicit Range( T min, T max )
+      : m_min( min )
+      , m_max( max )
+    {};
 
-	private:
-		QColor m_color;
+    Range( std::initializer_list< T > init_list )
+      : m_min( *std::begin( init_list ) )
+      , m_max( *std::next( std::begin( init_list ) ) )
+    {};
 
-		bool contextMenu( const QPoint & pos );
+    T min() const
+    {
+      return m_min;
+    };
 
-		void setToolTip();
+    T max() const
+    {
+      return m_max;
+    };
 
-	private Q_SLOTS:
-		void copyColorToClipboard() const;
-		void pasteColorFromClipboard();
+    bool contains( T v ) const
+    {
+      return m_min <= v &&
+                 v <= m_max;
+    };
 
-	protected:
-		void paintEvent( QPaintEvent * event ) override final;
-		void mousePressEvent( QMouseEvent * event ) override final;
-
-	public:
-		ColorDisplay( QWidget * parent = nullptr );
-
-		QSize sizeHint() const override;
-
-		const QColor & color() const;
-
-	public Q_SLOTS:
-		void setColor( const QColor & c );
-		void setAlpha( int alpha );
-
-	Q_SIGNALS:
-		void colorChanged( const QColor & c );
+  private:
+    T m_min,
+      m_max;
 };
 

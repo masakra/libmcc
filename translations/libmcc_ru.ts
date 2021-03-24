@@ -4,12 +4,12 @@
 <context>
     <name>ColorDisplay</name>
     <message>
-        <location filename="../src/ColorDisplay.cpp" line="131"/>
+        <location filename="../src/ColorDisplay.cpp" line="133"/>
         <source>Copy color</source>
         <translation>Копировать цвет</translation>
     </message>
     <message>
-        <location filename="../src/ColorDisplay.cpp" line="140"/>
+        <location filename="../src/ColorDisplay.cpp" line="143"/>
         <source>Paste color &lt;%1&gt;</source>
         <translation>Вставить цвет &lt;%1&gt;</translation>
     </message>

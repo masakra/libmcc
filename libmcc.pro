@@ -48,6 +48,7 @@ HEADERS += src/Application.h \
            src/FSDialog.h \
            src/Frame.h \
            src/Label.h \
+           src/Range.h \
            src/Settings.h \
            src/SettingsDialogBase.h \
            src/SettingsKey.h \
