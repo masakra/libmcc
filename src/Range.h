@@ -66,6 +66,32 @@ class Range
       return m_min <= v &&
                  v <= m_max;
     };
+    /** Расширить диапазон если \a v выходит за рамки диапазона
+      */
+    void expand( T v )
+    {
+      if ( m_min > v )
+        m_min = v;
+      if ( m_max < v )
+        m_max = v;
+    };
+
+    bool isNull() const
+    {
+      return m_min == m_max;
+    };
+
+    T length() const
+    {
+      return m_max - m_min;
+    };
+
+    Range< T > & operator = ( const Range< T > & other )
+    {
+      m_min = other.m_min;
+      m_max = other.m_max;
+      return *this;
+    };
 
   private:
     T m_min,
