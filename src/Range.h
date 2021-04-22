@@ -34,38 +34,44 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #pragma once
 
-#include <iterator>
 #include <initializer_list>
+#include <iterator>
+#include <limits>
 
 template < class T >
 class Range
 {
   public:
+    explicit Range()
+      : m_min( std::numeric_limits< T >::max() )
+      , m_max( std::numeric_limits< T >::lowest() )
+    {}
+
     explicit Range( T min, T max )
       : m_min( min )
       , m_max( max )
-    {};
+    {}
 
     Range( std::initializer_list< T > init_list )
       : m_min( *std::begin( init_list ) )
       , m_max( *std::next( std::begin( init_list ) ) )
-    {};
+    {}
 
     T min() const
     {
       return m_min;
-    };
+    }
 
     T max() const
     {
       return m_max;
-    };
+    }
 
     bool contains( T v ) const
     {
       return m_min <= v &&
                  v <= m_max;
-    };
+    }
     /** Расширить диапазон если \a v выходит за рамки диапазона
       */
     void expand( T v )
@@ -74,24 +80,29 @@ class Range
         m_min = v;
       if ( m_max < v )
         m_max = v;
-    };
+    }
 
     bool isNull() const
     {
       return m_min == m_max;
-    };
+    }
+
+    bool isValid() const
+    {
+      return m_min <= m_max;
+    }
 
     T length() const
     {
       return m_max - m_min;
-    };
+    }
 
     Range< T > & operator = ( const Range< T > & other )
     {
       m_min = other.m_min;
       m_max = other.m_max;
       return *this;
-    };
+    }
 
   private:
     T m_min,
