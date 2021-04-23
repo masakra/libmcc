@@ -57,9 +57,9 @@ class QStackedWidget;
   * Что бы не блокировал основной цикл обработки сообщений:
   * \code
   * DialogSettings * d = new DialogSettings;
-  * d->show();
+  * d->open();
   *	     //	   или
-  * ( new DialogSettings )->show();
+  * ( new DialogSettings )->open();
   * \endcode
   */
 class LIBMCC_EXPORT SettingsDialogBase : public Dialog
@@ -69,33 +69,35 @@ class LIBMCC_EXPORT SettingsDialogBase : public Dialog
 	public:
 		explicit SettingsDialogBase( QWidget * parent );
 
-		explicit SettingsDialogBase( const QList< SettingsKey > & watch, QWidget * parent );
+		explicit SettingsDialogBase( const QList< SettingsKey > & watch,
+        QWidget * parent );
 
 		explicit SettingsDialogBase( const QList< SettingsKey > & watch,
 				const QObject * receiver, const char * slot, QWidget * parent );
 
 		explicit SettingsDialogBase( const QList< SettingsKey > & watch,
-				std::function< void( const SettingsKey &, const QVariant & ) > func, QWidget * parent );
+				std::function< void( const SettingsKey &, const QVariant & ) > func,
+        QWidget * parent );
 
 		~SettingsDialogBase();
 
 	public Q_SLOTS:
 		/**	Отображает диалог и делает активную вкладку с индексом \a tab
-      *
-      * Если \a tab == -1 то активной становится вкладка которая была активна
-      * при закрытии диалога.
       */
-		void show( int tab = -1 );
+		void open( int tab );
+
+    void open() override;
 
 	Q_SIGNALS:
 		/** Изменилось наблюдаемое значение
 		  */
-		void watchValueChanged( const SettingsKey & key, const QVariant & val ) const;
+		void watchValueChanged( const SettingsKey & key, const QVariant & val )
+      const;
 
 	protected:
     void addPage( const QIcon & icon, const QString & caption, QWidget * page );
 
-		void showEvent( QShowEvent * event ) override final;
+		//void showEvent( QShowEvent * event ) override final;
     /** Вызывает saveValues()
       */
     void accept() override;
@@ -110,6 +112,5 @@ class LIBMCC_EXPORT SettingsDialogBase : public Dialog
 		QStackedWidget * m_stack;
 
 		QMap< SettingsKey, QVariant > m_watch;
-
 };
 

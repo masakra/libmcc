@@ -15,13 +15,6 @@
     </message>
 </context>
 <context>
-    <name>DialogSettingsBase</name>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">Настройки</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <location filename="../src/FSDialog.cpp" line="47"/>
@@ -33,7 +26,7 @@
     <name>SettingsDialogBase</name>
     <message>
         <location filename="../src/SettingsDialogBase.cpp" line="51"/>
-        <location filename="../src/SettingsDialogBase.cpp" line="123"/>
+        <location filename="../src/SettingsDialogBase.cpp" line="128"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>

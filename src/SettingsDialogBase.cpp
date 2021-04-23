@@ -39,14 +39,14 @@
 
 #include "ButtonsLine.h"
 
-#define GROUP metaObject()->className()
+#define GROUP QStringLiteral("SettingsDialogBase")
 #define STACK_INDEX QStringLiteral("StackIndex")
 
 #define ICON_SIZE 64
-#define SPACING 8
+#define SPACING 7
 
 SettingsDialogBase::SettingsDialogBase( QWidget * parent )
-	: Dialog( parent )
+	: Dialog( GROUP, parent )
 {
 	setWindowTitle( tr("Settings") );
 	setAttribute( Qt::WA_DeleteOnClose );
@@ -55,7 +55,8 @@ SettingsDialogBase::SettingsDialogBase( QWidget * parent )
 	createWidgets();
 }
 
-SettingsDialogBase::SettingsDialogBase( const QList< SettingsKey > & watch, QWidget * parent )
+SettingsDialogBase::SettingsDialogBase( const QList< SettingsKey > & watch,
+    QWidget * parent )
 	: SettingsDialogBase( parent )
 {
 	foreach( const SettingsKey & key, watch )
@@ -63,18 +64,20 @@ SettingsDialogBase::SettingsDialogBase( const QList< SettingsKey > & watch, QWid
 }
 
 SettingsDialogBase::SettingsDialogBase( const QList< SettingsKey > & watch,
-		const QObject * receiver, const char * slot, QWidget * parent )
-	: SettingsDialogBase( watch, parent )
+    const QObject * receiver, const char * slot, QWidget * parent )
+  : SettingsDialogBase( watch, parent )
 {
 	connect( this, SIGNAL( watchValueChanged( const QString & ) ),
 			receiver, slot );
 }
 
 SettingsDialogBase::SettingsDialogBase( const QList< SettingsKey > & watch,
-		std::function< void( const SettingsKey &, const QVariant & ) > func, QWidget * parent )
-	: SettingsDialogBase( watch, parent )
+    std::function< void( const SettingsKey &, const QVariant & ) > func,
+    QWidget * parent )
+  : SettingsDialogBase( watch, parent )
 {
-	connect( this, static_cast< void( SettingsDialogBase::* )( const SettingsKey &, const QVariant & ) const >
+	connect( this, static_cast< void( SettingsDialogBase::* )
+      ( const SettingsKey &, const QVariant & ) const >
       ( &SettingsDialogBase::watchValueChanged ), func );
 }
 
@@ -107,10 +110,12 @@ SettingsDialogBase::createWidgets()
 	m_pager->setFixedWidth( ICON_SIZE + SPACING + SPACING + sbw + 7 );
 	m_pager->setSpacing( SPACING );
   m_pager->setItemAlignment( Qt::AlignCenter );
+  //m_pager->horizontalScrollBar()->hide();
 
 	m_stack = new QStackedWidget( this );
 
-	connect( m_pager, SIGNAL( currentRowChanged( int ) ), m_stack, SLOT( setCurrentIndex( int ) ) );
+  connect( m_pager, &QListWidget::currentRowChanged,
+      m_stack, &QStackedWidget::setCurrentIndex );
 
 	QHBoxLayout * layoutPager = new QHBoxLayout();
 
@@ -125,7 +130,8 @@ SettingsDialogBase::createWidgets()
 }
 
 void
-SettingsDialogBase::addPage( const QIcon & icon, const QString & caption, QWidget * widget )
+SettingsDialogBase::addPage( const QIcon & icon, const QString & caption,
+    QWidget * widget )
 {
 	QListWidgetItem * item = new QListWidgetItem( m_pager );
 	item->setIcon( icon );
@@ -141,17 +147,24 @@ SettingsDialogBase::addPage( const QIcon & icon, const QString & caption, QWidge
 }
 
 void
-SettingsDialogBase::show( int tab )
+SettingsDialogBase::open( int tab )
 {
-	m_pager->setCurrentRow( tab != -1 ? tab : Settings::value( STACK_INDEX, GROUP ).toInt() );
-
-	QDialog::show();
+	m_pager->setCurrentRow( tab );
+	Dialog::open();
 }
 
+void
+SettingsDialogBase::open() // override
+{
+  open( Settings::value( STACK_INDEX, GROUP ).toInt() );
+}
+
+/*
 void
 SettingsDialogBase::showEvent( QShowEvent * event )
 {
 	// move to desktop center
+
   if ( qApp->screens().isEmpty() )
     return;
 
@@ -161,6 +174,7 @@ SettingsDialogBase::showEvent( QShowEvent * event )
 
 	QDialog::showEvent( event );
 }
+*/
 
 void
 SettingsDialogBase::accept() // override

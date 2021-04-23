@@ -69,10 +69,11 @@ Dialog::~Dialog()
 QDialogButtonBox *
 Dialog::buttonBox( QDialogButtonBox::StandardButtons buttons )
 {
-	QDialogButtonBox * dbb = new QDialogButtonBox( buttons, Qt::Horizontal, this );
+	QDialogButtonBox * dbb = new QDialogButtonBox( buttons, Qt::Horizontal,
+      this );
 
-	connect( dbb, SIGNAL( accepted() ), SLOT( accept() ) );
-	connect( dbb, SIGNAL( rejected() ), SLOT( reject() ) );
+	connect( dbb, &QDialogButtonBox::accepted, this, &Dialog::accept );
+	connect( dbb, &QDialogButtonBox::rejected, this, &Dialog::reject );
 
 	return dbb;
 }
