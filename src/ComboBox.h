@@ -36,9 +36,11 @@
 
 #include <QComboBox>
 
+#include "libmcc_global.h"
+
 /** \brief 
  */
-class ComboBox : public QComboBox
+class LIBMCC_EXPORT ComboBox : public QComboBox
 {
 	Q_OBJECT
 

@@ -36,9 +36,11 @@
 
 #include <QWidget>
 
+#include "libmcc_global.h"
+
 /** \brief Отображает цвет
   */
-class ColorDisplay : public QWidget
+class LIBMCC_EXPORT ColorDisplay : public QWidget
 {
 	Q_OBJECT
 
