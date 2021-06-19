@@ -39,10 +39,11 @@
 #include "libmcc_global.h"
 
 /** \brief Метка с приятелем
- */
+  */
 class LIBMCC_EXPORT Label : public QLabel
 {
 	public:
-		Label( const QString & text, QWidget * buddy, QWidget * parent = nullptr );
+		explicit Label( const QString & text, QWidget * buddy,
+        QWidget * parent = nullptr );
 };
 

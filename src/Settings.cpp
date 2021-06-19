@@ -83,7 +83,8 @@ Settings::haveValue( const QString & name, const QString & group/*= QString()*/)
 const QVariant &
 Settings::value( const QString & name, const QString & group, const QVariant & def_value )	// static
 {
-	if ( ! haveValue( name, group ) ) {
+	if ( ! haveValue( name, group ) ||
+        ! g_values.value( group ).value( name ).isValid() ) {
 		QSETTINGS_s
 		g_values[ group ][ name ] = s.value( fullParamName( name, group ), def_value );
 	}
