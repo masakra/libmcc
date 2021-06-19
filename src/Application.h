@@ -36,9 +36,11 @@
 
 #include <QApplication>
 
+#include "libmcc_global.h"
+
 /** \brief Приложение
  */
-class Application : public QApplication
+class LIBMCC_EXPORT Application : public QApplication
 {
 	Q_OBJECT
 
