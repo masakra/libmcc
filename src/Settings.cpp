@@ -81,13 +81,23 @@ Settings::haveValue( const QString & name, const QString & group/*= QString()*/)
 }
 
 const QVariant &
-Settings::value( const QString & name, const QString & group, const QVariant & def_value )	// static
+Settings::value( const QString & name, const QString & group,
+    const QVariant & def_value )	// static
 {
 	if ( ! haveValue( name, group ) ||
         ! g_values.value( group ).value( name ).isValid() ) {
 		QSETTINGS_s
-		g_values[ group ][ name ] = s.value( fullParamName( name, group ), def_value );
-	}
+    const QVariant saved_value = s.value( fullParamName( name, group ) );
+
+    if ( saved_value.isValid() )
+      g_values[ group ][ name ] = saved_value;
+    else if ( def_value.isValid() ) {
+      g_values[ group ][ name ] = def_value;
+      s.setValue( fullParamName( name, group ), def_value );
+    }
+    else
+      g_values[ group ][ name ] = QVariant();
+  }
 
 	return g_values[ group ][ name ];
 }

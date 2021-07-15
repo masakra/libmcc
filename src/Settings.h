@@ -71,12 +71,15 @@ class LIBMCC_EXPORT Settings
 		static QSettings::Scope scope();
 
 		// символьные ключи
-		static const QVariant & value( const QString & name, const QString & group = QString(),
-				const QVariant & def_value = QVariant() );
+		static const QVariant & value( const QString & name,
+        const QString & group = QString(),
+        const QVariant & def_value = QVariant() );
 
-		static void setValue( const QString & paramName, const QVariant & newValue );
+		static void setValue( const QString & paramName,
+        const QVariant & newValue );
 
-    static void setValue( const QString & name, const QString & group, const QVariant & value );
+    static void setValue( const QString & name, const QString & group,
+        const QVariant & value );
 
 		// целочисленные ключи, в теории, должно искать быстрее
 		static const QVariant & value( uint paramName, uint group = 0,
