@@ -43,10 +43,8 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
   public:
     using QByteArray::QByteArray;
 
-  template< class T >
-  T valueAt( qsizetype offset, QSysInfo::Endian endian = QSysInfo::BigEndian );
-
+    template< class T >
+    T valueAt( qsizetype offset, QSysInfo::Endian endian =
+        QSysInfo::BigEndian ) const;
 };
-
-
 

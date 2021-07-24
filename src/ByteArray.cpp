@@ -38,8 +38,9 @@
 #include <QtEndian>
 
 template< class T >
-T ByteArray::valueAt( qsizetype offset, QSysInfo::Endian endian/*=
-    QSysInfo::BigEndian*/)
+T
+ByteArray::valueAt( qsizetype offset, QSysInfo::Endian endian/*=
+    QSysInfo::BigEndian*/) const
 {
   return endian == QSysInfo::BigEndian ?
                                   qFromBigEndian< T >( data() + offset ) :
