@@ -40,6 +40,8 @@ DEFINES += LIBMCC_LIBRARY
 
 HEADERS += src/Application.h \
            src/ButtonsLine.h \
+           src/ByteArray.h \
+           src/ByteVal.h \
            src/ColorDisplay.h \
            src/ColorPicker.h \
            src/ComboBox.h \
@@ -59,6 +61,7 @@ HEADERS += src/Application.h \
 
 SOURCES += src/Application.cpp \
            src/ButtonsLine.cpp \
+           src/ByteArray.cpp \
            src/ColorDisplay.cpp \
            src/ColorPicker.cpp \
            src/ComboBox.cpp \

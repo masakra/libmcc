@@ -32,25 +32,17 @@
  ┃ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  ┃
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-#pragma once
-
-#include <QtEndian>
 
 #include "ByteArray.h"
 
-#include "libmcc_global.h"
+#include <QtEndian>
 
-/** По мотивам libsimatic::SimVal
-  */
-template< typename T >
-class LIBMCC_EXPORT ByteVal : public ByteArray
+template< class T >
+T ByteArray::valueAt( qsizetype offset, QSysInfo::Endian endian/*=
+    QSysInfo::BigEndian*/)
 {
-  public:
-    ByteVal( T val, QSysInfo::Endian endian = QSysInfo::BigEndian )
-      : ByteArray( sizeof( T ), '\0')
-    {
-      endian == QSysInfo::BigEndian ? qToBigEndian< T >( val, data() ) :
-                                      qToLittleEndian< T >( val, data() );
-    }
-};
+  return endian == QSysInfo::BigEndian ?
+                                  qFromBigEndian< T >( data() + offset ) :
+                                  qFromLittleEndian< T >( data() + offset );
+}
 
