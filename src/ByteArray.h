@@ -36,6 +36,8 @@
 
 #include <QByteArray>
 
+#include <QtEndian>
+
 #include "libmcc_global.h"
 
 class LIBMCC_EXPORT ByteArray : public QByteArray
@@ -45,6 +47,11 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
 
     template< class T >
     T valueAt( qsizetype offset, QSysInfo::Endian endian =
-        QSysInfo::BigEndian ) const;
+        QSysInfo::BigEndian ) const
+    {
+      return endian == QSysInfo::BigEndian ?
+                                  qFromBigEndian< T >( data() + offset ) :
+                                  qFromLittleEndian< T >( data() + offset );
+    }
 };
 
