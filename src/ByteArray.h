@@ -44,6 +44,7 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
 {
   public:
     using QByteArray::QByteArray;
+    ByteArray( const QByteArray & ba );
 
     template< class T >
     T valueAt( qsizetype offset, QSysInfo::Endian endian =
@@ -52,6 +53,15 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
       return endian == QSysInfo::BigEndian ?
                                   qFromBigEndian< T >( data() + offset ) :
                                   qFromLittleEndian< T >( data() + offset );
+    }
+
+    template< class T >
+    void setValueAt( T val, qsizetype offset, QSysInfo::Endian endian =
+        QSysInfo::BigEndian )
+    {
+      endian == QSysInfo::BigEndian ?
+                                  qToBigEndian< T >( val, data() + offset ) :
+                                  qToLittleEndian< T >( val, data() + offset );
     }
 };
 

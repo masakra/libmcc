@@ -61,6 +61,7 @@ HEADERS += src/Application.h \
 
 SOURCES += src/Application.cpp \
            src/ButtonsLine.cpp \
+           src/ByteArray.cpp \
            src/ColorDisplay.cpp \
            src/ColorPicker.cpp \
            src/ComboBox.cpp \
