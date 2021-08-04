@@ -39,7 +39,7 @@
 
 #include "libmcc_global.h"
 
-/** \brief 
+/** Диалог с сохранением позиции и другими удобствами
   */
 class LIBMCC_EXPORT Dialog : public QDialog
 {
@@ -55,7 +55,10 @@ class LIBMCC_EXPORT Dialog : public QDialog
     ~Dialog();
 
 	protected:
-		QDialogButtonBox * buttonBox( QDialogButtonBox::StandardButtons buttons = QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
+		QDialogButtonBox * buttonBox( QDialogButtonBox::StandardButtons buttons =
+        QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
+
+    QWidget * underline( const QString & title = QString() ) const;
 
   private:
     const QString m_settings_group;

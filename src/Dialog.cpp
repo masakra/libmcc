@@ -35,7 +35,10 @@
 
 #include "Dialog.h"
 
+#include <QtWidgets>
+
 #include "Settings.h"
+#include "Frame.h"
 
 #define POS QStringLiteral("position")
 #define SIZE QStringLiteral("size")
@@ -76,5 +79,26 @@ Dialog::buttonBox( QDialogButtonBox::StandardButtons buttons )
 	connect( dbb, &QDialogButtonBox::rejected, this, &Dialog::reject );
 
 	return dbb;
+}
+
+QWidget *
+Dialog::underline( const QString & title/*= QString()*/) const
+{
+  QWidget * widget = new QWidget;
+
+  QHBoxLayout * layout = new QHBoxLayout( widget );
+  layout->setContentsMargins( 0, 0, 0, 0 );
+
+  QLabel * label = new QLabel( title.isEmpty() ? windowTitle().toLower() :
+                                                                      title );
+  label->setEnabled( false );
+
+  Frame * hor_line = new Frame;
+  hor_line->setEnabled( false );
+
+  layout->addWidget( label, 1 );
+  layout->addWidget( hor_line, 1'000 );
+
+  return widget;
 }
 
