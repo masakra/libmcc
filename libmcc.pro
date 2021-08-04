@@ -38,46 +38,46 @@ TARGET = mcc
 QT += widgets sql
 DEFINES += LIBMCC_LIBRARY
 
-HEADERS += src/Application.h \
-           src/ButtonsLine.h \
-           src/ByteArray.h \
-           src/ByteVal.h \
-           src/ColorDisplay.h \
-           src/ColorPicker.h \
-           src/ComboBox.h \
-           src/Dialog.h \
-           src/DoubleSpinBox.h \
-           src/FSDialog.h \
-           src/Frame.h \
-           src/Label.h \
-           src/Range.h \
-           src/Settings.h \
-           src/SettingsDialogBase.h \
-           src/SettingsKey.h \
-           src/SpinBox.h \
-           src/TextLineY.h \
-           src/Version.h \
-           src/libmcc_global.h
+HEADERS += \
+  src/Application.h \
+  src/ByteArray.h \
+  src/ByteVal.h \
+  src/ColorDisplay.h \
+  src/ColorPicker.h \
+  src/ComboBox.h \
+  src/Dialog.h \
+  src/DoubleSpinBox.h \
+  src/FSDialog.h \
+  src/Frame.h \
+  src/Label.h \
+  src/Range.h \
+  src/Settings.h \
+  src/SettingsDialogBase.h \
+  src/SettingsKey.h \
+  src/SpinBox.h \
+  src/TextLineY.h \
+  src/Version.h \
+  src/libmcc_global.h
 
-SOURCES += src/Application.cpp \
-           src/ButtonsLine.cpp \
-           src/ByteArray.cpp \
-           src/ColorDisplay.cpp \
-           src/ColorPicker.cpp \
-           src/ComboBox.cpp \
-           src/Dialog.cpp \
-           src/DoubleSpinBox.cpp \
-           src/FSDialog.cpp \
-           src/Frame.cpp \
-           src/Label.cpp \
-           src/Settings.cpp \
-           src/SettingsDialogBase.cpp \
-           src/SettingsKey.cpp \
-           src/TextLineY.cpp \
-           src/SpinBox.cpp \
-           src/Version.cpp
+SOURCES += \
+  src/Application.cpp \
+  src/ByteArray.cpp \
+  src/ColorDisplay.cpp \
+  src/ColorPicker.cpp \
+  src/ComboBox.cpp \
+  src/Dialog.cpp \
+  src/DoubleSpinBox.cpp \
+  src/FSDialog.cpp \
+  src/Frame.cpp \
+  src/Label.cpp \
+  src/Settings.cpp \
+  src/SettingsDialogBase.cpp \
+  src/SettingsKey.cpp \
+  src/TextLineY.cpp \
+  src/SpinBox.cpp \
+  src/Version.cpp
 
 TRANSLATIONS = translations/libmcc_ru.ts
 
-QMAKE_POST_LINK = lupdate $${_PRO_FILE_}		# обновить переводы
+## QMAKE_POST_LINK = lupdate $${_PRO_FILE_}		# обновить переводы
 
