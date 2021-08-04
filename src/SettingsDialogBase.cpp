@@ -37,8 +37,6 @@
 
 #include <QtWidgets>
 
-#include "ButtonsLine.h"
-
 #define GROUP QStringLiteral("SettingsDialogBase")
 #define STACK_INDEX QStringLiteral("StackIndex")
 
@@ -125,7 +123,7 @@ SettingsDialogBase::createWidgets()
 	QVBoxLayout * layout = new QVBoxLayout( this );
 
 	layout->addLayout( layoutPager );
-	layout->addLayout( new ButtonsLine( tr("Settings") ) );
+	layout->addWidget( underline() );
 	layout->addWidget( buttonBox() );
 }
 
