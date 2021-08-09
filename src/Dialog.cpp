@@ -85,6 +85,7 @@ QWidget *
 Dialog::underline( const QString & title/*= QString()*/) const
 {
   QWidget * widget = new QWidget;
+  widget->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
 
   QHBoxLayout * layout = new QHBoxLayout( widget );
   layout->setContentsMargins( 0, 0, 0, 0 );
