@@ -60,6 +60,8 @@ class LIBMCC_EXPORT Dialog : public QDialog
 
     QWidget * underline( const QString & title = QString() ) const;
 
+    QDialogButtonBox * closeButton() const;
+
   private:
     const QString m_settings_group;
 };

@@ -103,3 +103,14 @@ Dialog::underline( const QString & title/*= QString()*/) const
   return widget;
 }
 
+QDialogButtonBox *
+Dialog::closeButton() const
+{
+  QDialogButtonBox * box = new QDialogButtonBox( QDialogButtonBox::Close,
+      Qt::Horizontal );
+
+  connect( box, &QDialogButtonBox::rejected, this, &Dialog::reject );
+
+  return box;
+}
+
