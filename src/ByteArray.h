@@ -45,6 +45,7 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
   public:
     using QByteArray::QByteArray;
     ByteArray( const QByteArray & ba );
+    explicit ByteArray( qsizetype size, char ch = '\0');
 
     template< class T >
     T valueAt( qsizetype offset, QSysInfo::Endian endian =

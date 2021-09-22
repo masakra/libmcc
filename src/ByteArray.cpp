@@ -6,3 +6,8 @@ ByteArray::ByteArray( const QByteArray & ba )
 {
 }
 
+ByteArray::ByteArray( qsizetype size, char ch/*= '\0'*/)
+  : QByteArray( size, ch )
+{
+}
+
