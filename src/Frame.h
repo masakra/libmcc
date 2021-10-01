@@ -43,6 +43,7 @@
 class LIBMCC_EXPORT Frame : public QFrame
 {
   public:
-    Frame( Shape shape = QFrame::HLine, QWidget * parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags() );
+    explicit Frame( Shape shape = QFrame::HLine, QWidget * parent = nullptr,
+        Qt::WindowFlags flags = Qt::WindowFlags() );
 };
 

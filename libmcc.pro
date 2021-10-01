@@ -77,7 +77,5 @@ SOURCES += \
   src/SpinBox.cpp \
   src/Version.cpp
 
-TRANSLATIONS = translations/libmcc_ru.ts
-
-## QMAKE_POST_LINK = lupdate $${_PRO_FILE_}		# обновить переводы
+include( ../.auto-qm.pri )
 

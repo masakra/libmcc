@@ -44,6 +44,5 @@ class LIBMCC_EXPORT SpinBox : public QSpinBox
 
   public:
     explicit SpinBox( QWidget * parent = nullptr );
-
 };
 
