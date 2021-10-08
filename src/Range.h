@@ -97,13 +97,6 @@ class Range
       return m_max - m_min;
     }
 
-    Range< T > & operator = ( const Range< T > & other )
-    {
-      m_min = other.m_min;
-      m_max = other.m_max;
-      return *this;
-    }
-
   private:
     T m_min,
       m_max;
