@@ -82,6 +82,14 @@ class Range
         m_max = v;
     }
 
+    void expand( const Range< T > & range )
+    {
+      if ( range.isValid() ) {
+        expand( range.min() );
+        expand( range.max() );
+      }
+    }
+
     bool isNull() const
     {
       return m_min == m_max;
