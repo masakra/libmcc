@@ -39,9 +39,9 @@
 #include "libmcc_global.h"
 
 /** \brief Диалоги для файловой системы
- *
- * Запоминают последний используемый каталог.
- */
+  *
+  * Запоминают последний используемый каталог.
+  */
 class LIBMCC_EXPORT FSDialog
 {
 	public:
@@ -49,11 +49,17 @@ class LIBMCC_EXPORT FSDialog
 				const QString & suffix = QString(), const QString & filter = QString(),
 				QFileDialog::Options options = QFileDialog::Options() );
 
+    static QStringList openFileNames( QWidget * parent, const QString & caption,
+        const QString & suffix = QString(), const QString & filter = QString(),
+        QFileDialog::Options options = QFileDialog::Options() );
+
 		static QString saveFileName( QWidget * parent, const QString & caption,
 				const QString & suffix = QString(), const QString & filter = QString(),
-				const QString & fileName = QString(), QFileDialog::Options options = QFileDialog::Options() );
+				const QString & fileName = QString(),
+        QFileDialog::Options options = QFileDialog::Options() );
 
 		static QString directoryName( QWidget * parent, const QString & caption,
-				const QString & suffix = QString(), QFileDialog::Options options = QFileDialog::Options() );
+				const QString & suffix = QString(),
+        QFileDialog::Options options = QFileDialog::Options() );
 };
 
