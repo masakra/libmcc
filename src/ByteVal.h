@@ -47,7 +47,7 @@ class LIBMCC_EXPORT ByteVal : public ByteArray
 {
   public:
     ByteVal( T val, QSysInfo::Endian endian = QSysInfo::BigEndian )
-      : ByteArray( sizeof( T ), '\0')
+      : ByteArray( sizeof( T ) )
     {
       endian == QSysInfo::BigEndian ? qToBigEndian< T >( val, data() ) :
                                       qToLittleEndian< T >( val, data() );

@@ -118,7 +118,11 @@ ColorDisplay::mousePressEvent( QMouseEvent * event )
 		event->accept();
 	}
   else if ( event->button() == Qt::RightButton ) {
+#if QT_VERSION >= 0x060000
 		if ( contextMenu( event->globalPosition().toPoint() ) )
+#else
+		if ( contextMenu( event->globalPos() ) )
+#endif
 			event->accept();
 	}
   else

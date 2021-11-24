@@ -77,5 +77,5 @@ SOURCES += \
   src/SpinBox.cpp \
   src/Version.cpp
 
-include( ../.auto-qm.pri )
+include( ../auto-qm-lib.pri )
 
