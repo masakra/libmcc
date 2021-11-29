@@ -33,70 +33,32 @@
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 
-#include "Dialog.h"
+#include "UnderlineWidget.h"
 
 #include <QtWidgets>
 
 #include "Frame.h"
-#include "Settings.h"
-#include "UnderlineWidget.h"
 
-#define POS QStringLiteral("position")
-#define SIZE QStringLiteral("size")
-
-Dialog::Dialog( QWidget * parent/*= nullptr*/)
-	: QDialog( parent )
-{
-}
-
-Dialog::Dialog( const QString & settings_group,
+UnderlineWidget::UnderlineWidget( const QString & title,
     QWidget * parent/*= nullptr*/)
-  : QDialog( parent )
-  , m_settings_group( settings_group )
 {
-  if ( ! settings_group.isEmpty() ) {
-    resize( Settings::value( SIZE, settings_group, QSize( 300, 100 ) )
-        .toSize() );
-    move( Settings::value( POS, settings_group, QPoint( 400, 200 ) )
-        .toPoint() );
-  }
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
+  createWidgets( title );
 }
 
-Dialog::~Dialog()
+void
+UnderlineWidget::createWidgets( const QString & title )
 {
-  if ( ! m_settings_group.isEmpty() ) {
-    Settings::setValue( POS, m_settings_group, pos() );
-    Settings::setValue( SIZE, m_settings_group, size() );
-  }
-}
+  QHBoxLayout * layout = new QHBoxLayout( this );
+  layout->setContentsMargins( 0, 0, 0, 0 );
 
-QDialogButtonBox *
-Dialog::buttonBox( QDialogButtonBox::StandardButtons buttons )
-{
-	QDialogButtonBox * dbb = new QDialogButtonBox( buttons, Qt::Horizontal,
-      this );
+  QLabel * label = new QLabel( title );
+  label->setEnabled( false );
 
-	connect( dbb, &QDialogButtonBox::accepted, this, &Dialog::accept );
-	connect( dbb, &QDialogButtonBox::rejected, this, &Dialog::reject );
+  Frame * hor_line = new Frame;
+  hor_line->setEnabled( false );
 
-	return dbb;
-}
-
-QWidget *
-Dialog::underline( const QString & title/*= QString()*/) const
-{
-  return new UnderlineWidget( title.isEmpty() ? windowTitle().toLower() :
-                                                title );
-}
-
-QDialogButtonBox *
-Dialog::closeButton() const
-{
-  QDialogButtonBox * box = new QDialogButtonBox( QDialogButtonBox::Close,
-      Qt::Horizontal );
-
-  connect( box, &QDialogButtonBox::rejected, this, &Dialog::reject );
-
-  return box;
+  layout->addWidget( label, 1 );
+  layout->addWidget( hor_line, 1'000 );
 }
 

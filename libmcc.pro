@@ -56,6 +56,7 @@ HEADERS += \
   src/SettingsKey.h \
   src/SpinBox.h \
   src/TextLineY.h \
+  src/UnderlineWidget.h \
   src/Version.h \
   src/libmcc_global.h
 
@@ -73,8 +74,9 @@ SOURCES += \
   src/Settings.cpp \
   src/SettingsDialogBase.cpp \
   src/SettingsKey.cpp \
-  src/TextLineY.cpp \
   src/SpinBox.cpp \
+  src/TextLineY.cpp \
+  src/UnderlineWidget.cpp \
   src/Version.cpp
 
 include( ../auto-qm-lib.pri )
