@@ -55,10 +55,7 @@ UnderlineWidget::createWidgets( const QString & title )
   QLabel * label = new QLabel( title );
   label->setEnabled( false );
 
-  Frame * hor_line = new Frame;
-  hor_line->setEnabled( false );
-
   layout->addWidget( label, 1 );
-  layout->addWidget( hor_line, 1'000 );
+  layout->addWidget( new Frame, 1'000 );
 }
 

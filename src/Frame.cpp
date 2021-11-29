@@ -39,5 +39,6 @@ Frame::Frame( Shape shape, QWidget * parent, Qt::WindowFlags flags/*= Qt::Window
   : QFrame( parent, flags )
 {
   setFrameShape( shape );
+  setEnabled( false );
 }
 

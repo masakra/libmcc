@@ -38,7 +38,8 @@
 
 #include "libmcc_global.h"
 
-#define QSETTINGS_s QSettings s( Settings::g_format, Settings::g_scope, qApp->organizationName(), qApp->applicationName() );
+#define QSETTINGS_s QSettings s( Settings::g_format, Settings::g_scope, \
+    qApp->organizationName(), qApp->applicationName() );
 
 /** Глобальный хэш значений параметров настроек.
  */
