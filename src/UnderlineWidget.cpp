@@ -41,6 +41,7 @@
 
 UnderlineWidget::UnderlineWidget( const QString & title,
     QWidget * parent/*= nullptr*/)
+  : QWidget( parent )
 {
   setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
   createWidgets( title );
