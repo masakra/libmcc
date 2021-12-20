@@ -45,3 +45,32 @@ ByteArray::ByteArray( qsizetype size, char ch/*= '\0'*/)
 {
 }
 
+bool
+ByteArray::bitAt( qsizetype offset ) const
+{
+  const qsizetype byte = offset >> 3;   /// делить на 8
+  const int mask = 1 << ( offset & 7 ); /// сдвинуть на остаток от деления на 8
+
+  return at( byte ) & mask;
+}
+
+bool
+ByteArray::every( uchar octet ) const
+{
+  for ( const uchar val : *this )
+    if ( ! ( val & octet ) )
+      return false;
+
+  return true;
+}
+
+bool
+ByteArray::some( uchar octet ) const
+{
+  for ( const uchar val : *this )
+    if ( val & octet )
+        return true;
+
+  return false;
+}
+

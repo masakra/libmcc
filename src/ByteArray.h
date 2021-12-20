@@ -65,12 +65,12 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
                                   qToLittleEndian< T >( val, data() + offset );
     }
 
-    bool bitAt( qsizetype offset ) const
-    {
-      const qsizetype byte = offset >> 3;   /// делить на 8
-      const int mask = 1 << ( offset & 7 ); /// сдвинуть на остаток от деления на 8
-
-      return at( byte ) & mask;
-    }
+    bool bitAt( qsizetype offset ) const;
+    /** Каждый байт не 0 с & \a octet
+      */
+    bool every( uchar octet ) const;
+    /** Хотя бы один байт не 0 с & \a octet
+      */
+    bool some( uchar octet ) const;
 };
 
