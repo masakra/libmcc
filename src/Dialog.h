@@ -62,7 +62,6 @@ class LIBMCC_EXPORT Dialog : public QDialog
 
     QDialogButtonBox * closeButton() const;
 
-  private:
     const QString m_settings_group;
 };
 
