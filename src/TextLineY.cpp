@@ -42,7 +42,7 @@ TextLineY::TextLineY( const QFont & font, qreal factor/*= 1.5*/,
   : m_current( init )
 {
   QFontMetrics fm( font );
-  m_line_height = fm.height() * factor;
+  m_line_height = fm.lineSpacing() * factor;
 };
 
 TextLineY::operator qreal() const
