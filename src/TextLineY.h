@@ -56,6 +56,8 @@ class LIBMCC_EXPORT TextLineY
 
     qreal operator ++ ( int );
 
+    qreal operator += ( qreal val );
+
   private:
     qreal m_current,          ///< Текущая позиция
           m_line_height;      ///< Приращение строки

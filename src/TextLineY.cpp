@@ -69,3 +69,9 @@ TextLineY::operator ++ ( int )
   return cur;
 }
 
+qreal
+ TextLineY::operator += ( qreal val )
+{
+  return m_current += val;
+}
+
