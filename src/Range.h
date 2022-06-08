@@ -82,6 +82,12 @@ class Range
         m_max = v;
     }
 
+    Range< T > & operator << ( T v )
+    {
+      expand( v );
+      return *this;
+    }
+
     void expand( const Range< T > & range )
     {
       if ( range.isValid() ) {
