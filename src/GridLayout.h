@@ -52,21 +52,16 @@ class LIBMCC_EXPORT GridLayout : public QGridLayout
       Next = -2
     };
 
+    int realRow( int row ) const;
+
+    int realColumn( int col ) const;
+
     using QGridLayout::addWidget;
 
-    template< class T >
-    T * addWidget( const QString & text, int row = 0, int col = 0,
-        int row_span = 1, int col_span = 1 )
-    {
-      T * t = new T;
-      const int r = row == Last ? lastRow() : row == Next ? nextRow() : row,
-                c = col == Last ? lastColumn() : col == Next ? nextColumn() : col;
-      addWidget( new Label( text, t ), r, c, Qt::AlignRight );
-      addWidget( t, r, c + 1, row_span, col_span );
-      return t;
-    }
+    void addWidget( const QString & text, QWidget * widget, int row,
+        int col = 0, int row_span = 1, int col_span = 1,
+        Qt::Alignment al = Qt::AlignRight );
 
-  private:
     int lastRow() const;
 
     int nextRow() const;

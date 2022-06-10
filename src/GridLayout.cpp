@@ -42,13 +42,37 @@ GridLayout::GridLayout( QWidget * parent/*= nullptr*/)
 }
 
 int
-GridLayout::lastRow() const // private
+GridLayout::realRow( int row ) const
+{
+  return row == Last ? lastRow() : row == Next ? nextRow() : row;
+}
+
+int
+GridLayout::realColumn( int col ) const
+{
+  return col == Last ? lastColumn() : col == Next ? nextColumn() : col;
+}
+
+void
+GridLayout::addWidget( const QString & text, QWidget * widget, int row,
+    int col/*= 0*/, int row_span/*= 1*/, int col_span/*= 1*/,
+    Qt::Alignment al/*= Qt::AlignRight*/)
+{
+  const int r = realRow( row ),
+            c = realColumn( col );
+
+  addWidget( new Label( text, widget ), r, c, al );
+  addWidget( widget, r, c + 1, row_span, col_span );
+}
+
+int
+GridLayout::lastRow() const
 {
   return rowCount() - 1;
 }
 
 int
-GridLayout::nextRow() const // private
+GridLayout::nextRow() const
 {
   return rowCount();
 }
