@@ -32,40 +32,36 @@
  ┃ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  ┃
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-#include "Application.h"
+#include "GridLayout.h"
 
-#include <QDate>
-#include <QDir>
-#include <QIcon>
-#include <QMessageBox>
-#include <QTranslator>
+#include "Label.h"
 
-Application::Application( const QString & organizationName, const QString & appName, const QString & appVersion,
-		int argc, char ** argv )
-	: QApplication( argc, argv )
+GridLayout::GridLayout( QWidget * parent/*= nullptr*/)
+  : QGridLayout( parent )
 {
-	setOrganizationName( organizationName );
-	setApplicationName( appName );
-	setApplicationVersion( appVersion );
 }
 
-void
-Application::loadTranslations( const QStringList & names, const QString & dir )
+int
+GridLayout::lastRow() const // private
 {
-	const QString dir_path = dir.startsWith( QLatin1Char(':') ) ?
-		( dir + "/") :
-		( applicationDirPath() + QDir::separator() + dir + QDir::separator() );
+  return rowCount() - 1;
+}
 
-	foreach( const QString & name, names )
-	{
-		QTranslator * translator = new QTranslator( this );
-		const QString file_name = dir_path + name + ".qm";
-		if ( translator->load( file_name ) )
-			installTranslator( translator );
-		else {
-			printf("WARNING: loading `%s' failed.\n", qPrintable( file_name ) );
-			delete translator;
-		}
-	}
+int
+GridLayout::nextRow() const // private
+{
+  return rowCount();
+}
+
+int
+GridLayout::lastColumn() const
+{
+  return columnCount() - 1;
+}
+
+int
+GridLayout::nextColumn() const
+{
+  return columnCount();
 }
 

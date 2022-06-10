@@ -32,40 +32,47 @@
  ┃ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  ┃
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-#include "Application.h"
+#pragma once
 
-#include <QDate>
-#include <QDir>
-#include <QIcon>
-#include <QMessageBox>
-#include <QTranslator>
+#include <QGridLayout>
 
-Application::Application( const QString & organizationName, const QString & appName, const QString & appVersion,
-		int argc, char ** argv )
-	: QApplication( argc, argv )
+#include "Label.h"
+
+#include "libmcc_global.h"
+
+class LIBMCC_EXPORT GridLayout : public QGridLayout
 {
-	setOrganizationName( organizationName );
-	setApplicationName( appName );
-	setApplicationVersion( appVersion );
-}
+  Q_OBJECT
 
-void
-Application::loadTranslations( const QStringList & names, const QString & dir )
-{
-	const QString dir_path = dir.startsWith( QLatin1Char(':') ) ?
-		( dir + "/") :
-		( applicationDirPath() + QDir::separator() + dir + QDir::separator() );
+  public:
+    explicit GridLayout( QWidget * parent = nullptr );
 
-	foreach( const QString & name, names )
-	{
-		QTranslator * translator = new QTranslator( this );
-		const QString file_name = dir_path + name + ".qm";
-		if ( translator->load( file_name ) )
-			installTranslator( translator );
-		else {
-			printf("WARNING: loading `%s' failed.\n", qPrintable( file_name ) );
-			delete translator;
-		}
-	}
-}
+    enum {
+      Last = -1,
+      Next = -2
+    };
+
+    using QGridLayout::addWidget;
+
+    template< class T >
+    T * addWidget( const QString & text, int row = 0, int col = 0,
+        int row_span = 1, int col_span = 1 )
+    {
+      T * t = new T;
+      const int r = row == Last ? lastRow() : row == Next ? nextRow() : row,
+                c = col == Last ? lastColumn() : col == Next ? nextColumn() : col;
+      addWidget( new Label( text, t ), r, c, Qt::AlignRight );
+      addWidget( t, r, c + 1, row_span, col_span );
+      return t;
+    }
+
+  private:
+    int lastRow() const;
+
+    int nextRow() const;
+
+    int lastColumn() const;
+
+    int nextColumn() const;
+};
 

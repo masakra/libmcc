@@ -49,6 +49,7 @@ HEADERS += \
   src/DoubleSpinBox.h \
   src/FSDialog.h \
   src/Frame.h \
+  src/GridLayout.h \
   src/Label.h \
   src/Range.h \
   src/Settings.h \
@@ -70,6 +71,7 @@ SOURCES += \
   src/DoubleSpinBox.cpp \
   src/FSDialog.cpp \
   src/Frame.cpp \
+  src/GridLayout.cpp \
   src/Label.cpp \
   src/Settings.cpp \
   src/SettingsDialogBase.cpp \
