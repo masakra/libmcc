@@ -32,42 +32,23 @@
  ┃ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  ┃
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-#pragma once
+#include "RangeEdit.h"
 
-#include <QGridLayout>
+#include <QFontMetrics>
+#include <QPainter>
+#include <QRect>
+#include <QStyleOptionViewItem>
 
-#include "Label.h"
-
-#include "libmcc_global.h"
-
-class LIBMCC_EXPORT GridLayout : public QGridLayout
+void drawRange( QPainter * painter, const QStyleOptionViewItem & option,
+    const QString & min, const QString & max )
 {
-  Q_OBJECT
-
-  public:
-    explicit GridLayout( QWidget * parent = nullptr );
-
-    enum {
-      Last = -1,
-      Next = -2
-    };
-
-    int realRow( int row ) const;
-
-    int realColumn( int col ) const;
-
-    using QGridLayout::addWidget;
-
-    void addWidget( const QString & text, QWidget * widget,
-        int row = Next, int col = 0, int row_span = 1, int col_span = 1,
-        Qt::Alignment al = Qt::AlignRight );
-
-    int lastRow() const;
-
-    int nextRow() const;
-
-    int lastColumn() const;
-
-    int nextColumn() const;
-};
+  const int delim_width = option.fontMetrics.horizontalAdvance( RANGE_DELIM ),
+          min_width = option.fontMetrics.horizontalAdvance( min ),
+          x = ( option.rect.width() - delim_width ) / 2 - min_width +
+            option.rect.left();
+  painter->setPen( option.palette.windowText().color() );
+  painter->drawText( x, option.rect.top(), option.rect.width(),
+      option.rect.height(), Qt::AlignLeft | Qt::AlignVCenter, QString("%1%2%3")
+                                          .arg( min, RANGE_DELIM, max ) );
+}
 

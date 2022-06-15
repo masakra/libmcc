@@ -38,6 +38,8 @@
 #include <iterator>
 #include <limits>
 
+#include <QString>
+
 template < class T >
 class Range
 {
@@ -110,6 +112,13 @@ class Range
     {
       return m_max - m_min;
     }
+
+    virtual QString toString() const
+    {
+      return QString("%1 - %2")
+        .arg( m_min )
+        .arg( m_max );
+    };
 
   private:
     T m_min,

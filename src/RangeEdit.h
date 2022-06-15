@@ -34,40 +34,99 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #pragma once
 
-#include <QGridLayout>
+#include <QFrame>
 
-#include "Label.h"
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QStyle>
 
+#include "Range.h"
 #include "libmcc_global.h"
 
-class LIBMCC_EXPORT GridLayout : public QGridLayout
+#define RANGE_DELIM QStringLiteral(" ... ")
+
+class QStyleOptionViewItem;
+
+/** Для отрисовки диапазона в делегатах
+  */
+extern LIBMCC_EXPORT void drawRange( QPainter * painter,
+    const QStyleOptionViewItem & option, const QString & min,
+    const QString & max );
+
+template< typename T, class E >
+class LIBMCC_EXPORT RangeEdit : public QFrame
 {
-  Q_OBJECT
-
   public:
-    explicit GridLayout( QWidget * parent = nullptr );
+    explicit RangeEdit( QWidget * parent = nullptr )
+      : QFrame( parent )
+    {
+      setFrameShape( QFrame::StyledPanel );
+      setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
+      createWidgets();
+    }
 
-    enum {
-      Last = -1,
-      Next = -2
+    Range< T > value() const
+    {
+      return Range< T >( m_min_spin->value(), m_max_spin->value() );
     };
 
-    int realRow( int row ) const;
+    void setValue( T min, T max )
+    {
+      m_min_spin->setValue( min );
+      m_max_spin->setValue( max );
+    };
 
-    int realColumn( int col ) const;
+    void setValue( const Range< T > & range )
+    {
+      setValue( range.min(), range.max() );
+    };
 
-    using QGridLayout::addWidget;
+    void setBoundingRange( T min, T max )
+    {
+      m_min_spin->setRange( min, max );
+      m_max_spin->setRange( min, max );
+    };
 
-    void addWidget( const QString & text, QWidget * widget,
-        int row = Next, int col = 0, int row_span = 1, int col_span = 1,
-        Qt::Alignment al = Qt::AlignRight );
+    void setSingleStep( T val )
+    {
+      m_min_spin->setSingleStep( val );
+      m_max_spin->setSingleStep( val );
+    };
 
-    int lastRow() const;
+  protected:
+    E * m_min_spin,
+      * m_max_spin;
 
-    int nextRow() const;
+  private:
+    void createWidgets()
+    {
+      const auto fw = style()->pixelMetric( QStyle::PM_SpinBoxFrameWidth );
 
-    int lastColumn() const;
+      QHBoxLayout * layout = new QHBoxLayout( this );
+      layout->setContentsMargins( fw, fw, fw, fw );
+      layout->setSpacing( 0 );
 
-    int nextColumn() const;
+      layout->addWidget( m_min_spin = new E );
+      m_min_spin->setFrame( false );
+      m_min_spin->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+
+      layout->addWidget( new QLabel( RANGE_DELIM ) );
+
+      layout->addWidget( m_max_spin = new E );
+      m_max_spin->setFrame( false );
+
+      layout->setStretch( 0, 10 );
+      layout->setStretch( 2, 10 );
+    }
+
+    void paintEvent( QPaintEvent * event ) override final
+    {
+      QPainter painter( this );
+      painter.fillRect( event->rect(), palette().base().color() );
+
+      QFrame::paintEvent( event );
+    }
 };
 

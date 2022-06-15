@@ -54,8 +54,8 @@ GridLayout::realColumn( int col ) const
 }
 
 void
-GridLayout::addWidget( const QString & text, QWidget * widget, int row,
-    int col/*= 0*/, int row_span/*= 1*/, int col_span/*= 1*/,
+GridLayout::addWidget( const QString & text, QWidget * widget,
+    int row/*= Next*/, int col/*= 0*/, int row_span/*= 1*/, int col_span/*= 1*/,
     Qt::Alignment al/*= Qt::AlignRight*/)
 {
   const int r = realRow( row ),

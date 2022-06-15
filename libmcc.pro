@@ -52,6 +52,7 @@ HEADERS += \
   src/GridLayout.h \
   src/Label.h \
   src/Range.h \
+  src/RangeEdit.h \
   src/Settings.h \
   src/SettingsDialogBase.h \
   src/SettingsKey.h \
@@ -73,6 +74,7 @@ SOURCES += \
   src/Frame.cpp \
   src/GridLayout.cpp \
   src/Label.cpp \
+  src/RangeEdit.cpp \
   src/Settings.cpp \
   src/SettingsDialogBase.cpp \
   src/SettingsKey.cpp \
