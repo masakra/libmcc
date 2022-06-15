@@ -56,7 +56,7 @@ extern LIBMCC_EXPORT void drawRange( QPainter * painter,
     const QString & max );
 
 template< typename T, class E >
-class LIBMCC_EXPORT RangeEdit : public QFrame
+class RangeEdit : public QFrame
 {
   public:
     explicit RangeEdit( QWidget * parent = nullptr )
