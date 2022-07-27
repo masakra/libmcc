@@ -65,20 +65,21 @@ GridLayout::addWidget( const QString & text, QWidget * widget,
   QGridLayout::addWidget( widget, r, c + 1, row_span, col_span );
 }
 
+//void
+//GridLayout::addWidget( QWidget * widget, int row, int col/*= 0*/,
+    //Qt::Alignment al/*= Qt::Alignment()*/)
+//{
+  //const int r = realRow( row ),
+            //c = realColumn( col );
+//
+  //QGridLayout::addWidget( widget, r, c, al );
+//}
+
+
 void
-GridLayout::addWidget( QWidget * widget, int row, int col,
+GridLayout::addWidget( QWidget * widget, int row, int col/*= 0*/,
+    int row_span/*= 1*/, int col_span/*= 1*/,
     Qt::Alignment al/*= Qt::Alignment()*/)
-{
-  const int r = realRow( row ),
-            c = realColumn( col );
-
-  QGridLayout::addWidget( widget, r, c, al );
-}
-
-
-void
-GridLayout::addWidget( QWidget * widget, int row, int col, int row_span,
-    int col_span, Qt::Alignment al/*= Qt::Alignment()*/)
 {
   const int r = realRow( row ),
             c = realColumn( col );

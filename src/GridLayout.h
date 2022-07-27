@@ -60,11 +60,13 @@ class LIBMCC_EXPORT GridLayout : public QGridLayout
         int row = Next, int col = 0, int row_span = 1, int col_span = 1,
         Qt::Alignment al = Qt::AlignRight );
 
-    void addWidget( QWidget * widget, int row, int col,
+    /*
+    void addWidget( QWidget * widget, int row, int col = 0,
         Qt::Alignment al = Qt::Alignment() );
+        */
 
-    void addWidget( QWidget * widget, int row, int col, int row_span,
-        int col_span, Qt::Alignment al = Qt::Alignment() );
+    void addWidget( QWidget * widget, int row, int col = 0, int row_span = 1,
+        int col_span = 1, Qt::Alignment al = Qt::Alignment() );
 
     int lastRow() const;
 
