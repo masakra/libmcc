@@ -90,6 +90,11 @@ class Range
       return *this;
     }
 
+    bool operator < ( const Range< T > & other ) const
+    {
+      return length() < other.length();
+    }
+
     void expand( const Range< T > & range )
     {
       if ( range.isValid() ) {
