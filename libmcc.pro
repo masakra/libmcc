@@ -51,6 +51,7 @@ HEADERS += \
   src/Frame.h \
   src/GridLayout.h \
   src/Label.h \
+  src/Pair.h \
   src/Range.h \
   src/RangeEdit.h \
   src/Settings.h \
