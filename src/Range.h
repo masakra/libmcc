@@ -54,6 +54,14 @@ class Range
       , m_max( max )
     {}
 
+    explicit Range( T length )
+      : m_min( length / -2. )
+      , m_max( -m_min )
+    {
+      if ( m_min > m_max )
+        std::swap( m_min, m_max );
+    }
+
     Range( std::initializer_list< T > init_list )
       : m_min( *std::begin( init_list ) )
       , m_max( *std::next( std::begin( init_list ) ) )
@@ -94,6 +102,15 @@ class Range
     {
       return length() < other.length();
     }
+
+    /*
+    Range< T > & operator = ( const Range< T > & other )
+    {
+      m_min = other.m_min;
+      m_max = other.m_max;
+      return *this;
+    }
+    */
 
     void expand( const Range< T > & range )
     {
