@@ -61,7 +61,8 @@ HEADERS += \
   src/TextLineY.h \
   src/UnderlineWidget.h \
   src/Version.h \
-  src/libmcc_global.h
+  src/libmcc_global.h \
+  src/sreal.h
 
 SOURCES += \
   src/Application.cpp \
@@ -82,7 +83,8 @@ SOURCES += \
   src/SpinBox.cpp \
   src/TextLineY.cpp \
   src/UnderlineWidget.cpp \
-  src/Version.cpp
+  src/Version.cpp \
+  src/sreal.cpp
 
 include( ../auto-qm-lib.pri )
 
