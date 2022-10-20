@@ -38,8 +38,11 @@ class QString;
 
 namespace mcc
 {
+  /** Перевод секунд в строку
+    */
   QString secsToString( int secs );
-
+  /** Перевод миллисекунд в строку
+    */
   QString msecsToString( int msecs );
 };
 

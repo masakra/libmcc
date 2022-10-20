@@ -34,6 +34,7 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #include "mcc.h"
 
+#include <QObject>
 #include <QString>
 
 QString
@@ -59,9 +60,9 @@ mcc::secsToString( int secs )
     return val || force ? QString("%1 %2 ").arg( val ).arg( suf ) : QString();
   };
 
-  return QString("%1%2%3%4 s").arg( toStr( days, "d"),
-                                  toStr( hours, "h"),
-                                  toStr( mins, "m") )
+  return QObject::tr("%1%2%3%4 s").arg( toStr( days, QObject::tr("d") ),
+                                  toStr( hours, QObject::tr("h") ),
+                                  toStr( mins, QObject::tr("m") ) )
                               .arg( secs );
 }
 
@@ -93,9 +94,9 @@ mcc::msecsToString( int msecs )
     return val ? QString("%1 %2 ").arg( val ).arg( suf ) : QString();
   };
 
-  return QString("%1%2%3%4.%5 s").arg( toStr( days, "d"),
-                                       toStr( hours, "h"),
-                                       toStr( mins, "m") )
+  return QObject::tr("%1%2%3%4.%5 s").arg( toStr( days, QObject::tr("d") ),
+                                       toStr( hours, QObject::tr("h") ),
+                                       toStr( mins, QObject::tr("m") ) )
                                  .arg( secs )
                                  .arg( msecs, 3, 10, QLatin1Char('0') );
 }
