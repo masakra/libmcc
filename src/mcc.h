@@ -34,56 +34,12 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #pragma once
 
-#include "libmcc_global.h"
+class QString;
 
-class QVariant;
-class QJsonValue;
-
-/** Вещественный тип с одним десятичным знаком
-  */
-class LIBMCC_EXPORT sreal
+namespace mcc
 {
-  public:
-    explicit sreal();
-    sreal( double val );
+  QString secsToString( int secs );
 
-    operator double() const;
-
-    operator QVariant() const;
-
-    operator QJsonValue() const;
-
-    bool operator == ( sreal other ) const;
-
-    bool operator != ( sreal other ) const;
-
-    bool operator < ( sreal other ) const;
-
-    bool operator < ( qreal val ) const;
-
-    bool operator <= ( sreal other ) const;
-
-    bool operator <= ( double other ) const;
-
-    bool operator <= ( int other ) const;
-
-    bool operator > ( sreal other ) const;
-
-    bool operator >= ( sreal other ) const;
-
-    sreal operator -= ( double val );
-
-    sreal operator += ( double val );
-
-    sreal operator -= ( sreal other );
-
-    sreal operator += ( sreal other );
-
-  private:
-    int m_value;
+  QString msecsToString( int msecs );
 };
-
-// for into qDebug output
-QDebug
-LIBMCC_EXPORT operator << ( QDebug debug, sreal val );
 

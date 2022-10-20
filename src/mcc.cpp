@@ -32,58 +32,71 @@
  ┃ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  ┃
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-#pragma once
+#include "mcc.h"
 
-#include "libmcc_global.h"
+#include <QString>
 
-class QVariant;
-class QJsonValue;
-
-/** Вещественный тип с одним десятичным знаком
-  */
-class LIBMCC_EXPORT sreal
+QString
+mcc::secsToString( int secs )
 {
-  public:
-    explicit sreal();
-    sreal( double val );
+  constexpr int secs_in_min = 60,                // Секунд в минуте
+                secs_in_hour = secs_in_min * 60, // Секунд в часе: 60 * 60
+                secs_in_day = secs_in_hour * 24; // Секунд в дне: 60 * 60 * 24
+  const int days = secs / secs_in_day;
+  if ( days )
+    secs %= secs_in_day;
 
-    operator double() const;
+  const int hours = secs / secs_in_hour;
+  if ( hours )
+    secs %= secs_in_hour;
 
-    operator QVariant() const;
+  const int mins = secs / secs_in_min;
+  if ( mins )
+    secs %= secs_in_min;
 
-    operator QJsonValue() const;
+  auto toStr = []( int val, const QString & suf, bool force = false ) -> QString
+  {
+    return val || force ? QString("%1 %2 ").arg( val ).arg( suf ) : QString();
+  };
 
-    bool operator == ( sreal other ) const;
+  return QString("%1%2%3%4 s").arg( toStr( days, "d"),
+                                  toStr( hours, "h"),
+                                  toStr( mins, "m") )
+                              .arg( secs );
+}
 
-    bool operator != ( sreal other ) const;
+QString
+mcc::msecsToString( int msecs )
+{
+  constexpr int msecs_in_sec = 1000,              // Миллисекунд в секунде
+                msecs_in_min = msecs_in_sec * 60, // Миллисекунд в минуте
+                msecs_in_hour = msecs_in_min * 60, // Миллисекунд в часе
+                msecs_in_day = msecs_in_hour * 24; // Миллисекунд в дне
+  const int days = msecs / msecs_in_day;
+  if ( days )
+    msecs %= msecs_in_day;
 
-    bool operator < ( sreal other ) const;
+  const int hours = msecs / msecs_in_hour;
+  if ( hours )
+    msecs %= msecs_in_hour;
 
-    bool operator < ( qreal val ) const;
+  const int mins = msecs / msecs_in_min;
+  if ( mins )
+    msecs %= msecs_in_min;
 
-    bool operator <= ( sreal other ) const;
+  const int secs = msecs / msecs_in_sec;
+  if ( secs )
+    msecs %= msecs_in_sec;
 
-    bool operator <= ( double other ) const;
+  auto toStr = []( int val, const QString & suf ) -> QString
+  {
+    return val ? QString("%1 %2 ").arg( val ).arg( suf ) : QString();
+  };
 
-    bool operator <= ( int other ) const;
-
-    bool operator > ( sreal other ) const;
-
-    bool operator >= ( sreal other ) const;
-
-    sreal operator -= ( double val );
-
-    sreal operator += ( double val );
-
-    sreal operator -= ( sreal other );
-
-    sreal operator += ( sreal other );
-
-  private:
-    int m_value;
-};
-
-// for into qDebug output
-QDebug
-LIBMCC_EXPORT operator << ( QDebug debug, sreal val );
+  return QString("%1%2%3%4.%5 s").arg( toStr( days, "d"),
+                                       toStr( hours, "h"),
+                                       toStr( mins, "m") )
+                                 .arg( secs )
+                                 .arg( msecs, 3, 10, QLatin1Char('0') );
+}
 

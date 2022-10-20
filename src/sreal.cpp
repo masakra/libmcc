@@ -35,9 +35,17 @@
 #include "sreal.h"
 
 #include <QtGlobal>
-#include <QVariant>
+#include <QJsonValue>
 
 #include <QtDebug>
+
+QDebug
+operator << ( QDebug debug, sreal val )
+{
+  debug.noquote() << QString::number( val, 'f', 1 );
+
+  return debug;
+}
 
 sreal::sreal()
   : m_value( 0 )
@@ -59,6 +67,11 @@ sreal::operator QVariant() const
   return QVariant( operator double() );
 }
 
+sreal::operator QJsonValue() const
+{
+  return QJsonValue( operator double() );
+}
+
 bool
 sreal::operator == ( sreal other ) const
 {
@@ -74,6 +87,12 @@ bool
 sreal::operator < ( sreal other ) const
 {
   return m_value < other.m_value;
+}
+
+bool
+sreal::operator < ( qreal val ) const
+{
+  return operator qreal() < val;
 }
 
 bool
