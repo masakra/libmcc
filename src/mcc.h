@@ -34,15 +34,17 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #pragma once
 
+#include "libmcc_global.h"
+
 class QString;
 
 namespace mcc
 {
   /** Перевод секунд в строку
     */
-  QString secsToString( int secs );
+  QString LIBMCC_EXPORT secsToString( int secs );
   /** Перевод миллисекунд в строку
     */
-  QString msecsToString( int msecs );
+  QString LIBMCC_EXPORT msecsToString( int msecs );
 };
 
