@@ -102,7 +102,7 @@ sreal::operator <= ( sreal other ) const
 }
 
 bool
-sreal::operator <= ( double other ) const
+sreal::operator <= ( qreal other ) const
 {
   return operator double() <= other;
 }
@@ -120,20 +120,26 @@ sreal::operator > ( sreal other ) const
 }
 
 bool
+sreal::operator > ( qreal other ) const
+{
+  return operator double() > other;
+}
+
+bool
 sreal::operator >= ( sreal other ) const
 {
   return m_value >= other.m_value;
 }
 
 sreal
-sreal::operator -= ( double val )
+sreal::operator -= ( qreal val )
 {
   m_value -= qRound( val * 10. );
   return *this;
 }
 
 sreal
-sreal::operator += ( double val )
+sreal::operator += ( qreal val )
 {
   m_value += qRound( val * 10. );
   return *this;

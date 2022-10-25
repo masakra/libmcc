@@ -63,17 +63,19 @@ class LIBMCC_EXPORT sreal
 
     bool operator <= ( sreal other ) const;
 
-    bool operator <= ( double other ) const;
+    bool operator <= ( qreal other ) const;
 
     bool operator <= ( int other ) const;
 
     bool operator > ( sreal other ) const;
 
+    bool operator > ( qreal other ) const;
+
     bool operator >= ( sreal other ) const;
 
-    sreal operator -= ( double val );
+    sreal operator -= ( qreal val );
 
-    sreal operator += ( double val );
+    sreal operator += ( qreal val );
 
     sreal operator -= ( sreal other );
 
