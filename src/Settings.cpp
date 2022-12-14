@@ -32,57 +32,57 @@
  ┃ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  ┃
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-
 #include "Settings.h"
 
 QSettings::Format Settings::g_format = QSettings::NativeFormat;
 
 QSettings::Scope Settings::g_scope = QSettings::UserScope;
 
-
 QHash< QString,		// group name
 	QHash< QString,		// param name (in group)
 		QVariant > > Settings::g_values;
 
 QString
-Settings::fullParamName( const QString & name, const QString & group )	// static inline
+Settings::fullParamName( const QString & name, const QString & group )
+  // static inline
 {
 	return group.isEmpty() ? name : ( group + "/" + name );
 }
 
 void
-Settings::setFormat( QSettings::Format format )		// static
+Settings::setFormat( QSettings::Format format )	// static
 {
 	g_format = format;
 }
 
 QSettings::Format
-Settings::format()		// static
+Settings::format() // static
 {
 	return g_format;
 }
 
 void
-Settings::setScope( QSettings::Scope scope )		// static
+Settings::setScope( QSettings::Scope scope ) // static
 {
 	g_scope = scope;
 }
 
 QSettings::Scope
-Settings::scope()		// static
+Settings::scope()	// static
 {
 	return g_scope;
 }
 
 bool
-Settings::haveValue( const QString & name, const QString & group/*= QString()*/)	// private static
+Settings::haveValue( const QString & name, const QString & group/*= QString()*/)
+  // private static
 {
 	return g_values.contains( group ) && g_values.value( group ).contains( name );
 }
 
 const QVariant &
-Settings::value( const QString & name, const QString & group,
-    const QVariant & def_value )	// static
+Settings::value( const QString & name, const QString & group, const QVariant &
+    def_value )	// static
 {
 	if ( ! haveValue( name, group ) ||
         ! g_values.value( group ).value( name ).isValid() ) {
@@ -118,7 +118,8 @@ Settings::setValue( const QString & name, const QVariant & value ) // static
 }
 
 void
-Settings::setValue( const QString & name, const QString & group, const QVariant & value ) // static
+Settings::setValue( const QString & name, const QString & group,
+    const QVariant & value ) // static
 {
   if ( haveValue( name, group ) &&
         g_values[ group ][ name ] == value )

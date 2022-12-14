@@ -32,8 +32,9 @@
  ┃ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  ┃
  ┃ POSSIBILITY OF SUCH DAMAGE.                                                 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-
 #include "ByteArray.h"
+
+#include "sreal.h"
 
 ByteArray::ByteArray( const QByteArray & ba )
   : QByteArray( ba )
@@ -52,6 +53,12 @@ ByteArray::bitAt( qsizetype offset ) const
   const int mask = 1 << ( offset & 7 ); /// сдвинуть на остаток от деления на 8
 
   return at( byte ) & mask;
+}
+
+sreal
+ByteArray::srealAt( qsizetype offset ) const
+{
+  return valueAt< short >( offset ) / 10.;
 }
 
 bool

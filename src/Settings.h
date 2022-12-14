@@ -50,19 +50,6 @@ class LIBMCC_EXPORT Settings
 
 		static QSettings::Scope g_scope;
 
-	private:
-		// символьный хэш
-		static QHash< QString,		// group name
-					  QHash< QString,		// param name (in group)
-					    QVariant > > g_values;
-
-		inline static QString fullParamName( const QString & name , const QString & group );
-
-		/** \brief Проверяет наличие значения параметра в g_values
-		 */
-		static bool haveValue( const QString & name, const QString & group = QString() );
-
-	public:
 		static void setFormat( QSettings::Format format );
 
 		static QSettings::Format format();
@@ -76,16 +63,29 @@ class LIBMCC_EXPORT Settings
         const QString & group = QString(),
         const QVariant & def_value = QVariant() );
 
-		static void setValue( const QString & paramName,
-        const QVariant & newValue );
+		static void setValue( const QString & name, const QVariant & value );
 
     static void setValue( const QString & name, const QString & group,
         const QVariant & value );
 
 		// целочисленные ключи, в теории, должно искать быстрее
-		static const QVariant & value( uint paramName, uint group = 0,
-				const QVariant & def_value = QVariant() );
+		static const QVariant & value( uint name, uint group = 0,
+				const QVariant & def_val = QVariant() );
 
-		static void setValue( uint paramName, const QVariant & newValue, uint group = 0 );
+		static void setValue( uint name, const QVariant & value, uint group = 0 );
+
+	private:
+		// символьный хэш
+		static QHash< QString,		// group name
+					  QHash< QString,		// param name (in group)
+					    QVariant > > g_values;
+
+		inline static QString fullParamName( const QString & name, const QString &
+        group );
+
+		/** \brief Проверяет наличие значения параметра в g_values
+		 */
+		static bool haveValue( const QString & name, const QString & group =
+        QString() );
 };
 

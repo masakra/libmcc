@@ -81,6 +81,10 @@ class LIBMCC_EXPORT sreal
 
     sreal operator += ( sreal other );
 
+    static sreal max();
+
+    static sreal lowest();
+
   private:
     int m_value;
 };

@@ -159,3 +159,15 @@ sreal::operator += ( sreal other )
   return *this;
 }
 
+sreal
+sreal::max() // static
+{
+  return std::numeric_limits< short >::max() / 10.;
+}
+
+sreal
+sreal::lowest() // static
+{
+  return std::numeric_limits< short >::lowest() / 10.;
+}
+

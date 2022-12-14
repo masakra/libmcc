@@ -40,6 +40,8 @@
 
 #include "libmcc_global.h"
 
+class sreal;
+
 class LIBMCC_EXPORT ByteArray : public QByteArray
 {
   public:
@@ -66,6 +68,8 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
     }
 
     bool bitAt( qsizetype offset ) const;
+
+    sreal srealAt( qsizetype offset ) const;
     /** Каждый байт не 0 с & \a octet
       */
     bool every( uchar octet ) const;
