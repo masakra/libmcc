@@ -61,23 +61,3 @@ ByteArray::srealAt( qsizetype offset ) const
   return valueAt< short >( offset ) / 10.;
 }
 
-bool
-ByteArray::every( uchar octet ) const
-{
-  for ( const uchar val : *this )
-    if ( ! ( val & octet ) )
-      return false;
-
-  return true;
-}
-
-bool
-ByteArray::some( uchar octet ) const
-{
-  for ( const uchar val : *this )
-    if ( val & octet )
-        return true;
-
-  return false;
-}
-
