@@ -34,23 +34,22 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #pragma once
 
-#include <QtEndian>
-
-#include "ByteArray.h"
+#include <QSplitter>
 
 #include "libmcc_export.h"
 
-/** По мотивам libsimatic::SimVal
+/** Сохраняет свой стейт
   */
-template< typename T >
-class LIBMCC_EXPORT ByteVal : public ByteArray
+class LIBMCC_EXPORT Splitter : public QSplitter
 {
+  Q_OBJECT
+
   public:
-    ByteVal( T val, QSysInfo::Endian endian = QSysInfo::BigEndian )
-      : ByteArray( sizeof( T ) )
-    {
-      endian == QSysInfo::BigEndian ? qToBigEndian< T >( val, data() ) :
-                                      qToLittleEndian< T >( val, data() );
-    }
+    explicit Splitter( Qt::Orientation orientation, const QString &
+        settings_name = QString(), QWidget * parent = nullptr );
+    ~Splitter();
+
+  private:
+    QString m_settings_name;
 };
 
