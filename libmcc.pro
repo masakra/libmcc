@@ -39,7 +39,6 @@ QT += widgets sql
 DEFINES += LIBMCC_LIBRARY
 
 HEADERS += \
-  src/Application.h \
   src/ByteArray.h \
   src/ByteVal.h \
   src/ColorDisplay.h \
@@ -61,12 +60,11 @@ HEADERS += \
   src/TextLineY.h \
   src/UnderlineWidget.h \
   src/Version.h \
-  src/libmcc_global.h \
+  src/libmcc_export.h \
   src/mcc.h \
   src/sreal.h
 
 SOURCES += \
-  src/Application.cpp \
   src/ByteArray.cpp \
   src/ColorDisplay.cpp \
   src/ColorPicker.cpp \
