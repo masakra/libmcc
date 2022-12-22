@@ -45,7 +45,7 @@
 #include "Settings.h"
 #include "SettingsKey.h"
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 class QListWidget;
 class QStackedWidget;

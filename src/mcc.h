@@ -34,7 +34,7 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #pragma once
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 class QString;
 

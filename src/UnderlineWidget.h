@@ -36,7 +36,7 @@
 
 #include <QWidget>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 class LIBMCC_EXPORT UnderlineWidget : public QWidget
 {

@@ -36,7 +36,7 @@
 
 #include <QApplication>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 /** \brief Приложение
  */
@@ -45,13 +45,14 @@ class LIBMCC_EXPORT Application : public QApplication
 	Q_OBJECT
 
 	public:
-		Application( const QString & organizationName, const QString & appName, const QString & appVersion,
-				int argc, char ** argv );
+		Application( const QString & organizationName, const QString & appName,
+        const QString & appVersion, int argc, char ** argv );
 
 		/** \brief Загружает файлы перевода
 		 *
 		 * Если \a dir начинается с `:', то считается что файлы в ресурсах.
 		 */
-		void loadTranslations( const QStringList & names, const QString & dir = "translations");
+		void loadTranslations( const QStringList & names, const QString & dir =
+        "translations");
 };
 

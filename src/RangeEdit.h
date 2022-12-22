@@ -43,7 +43,7 @@
 #include <QStyle>
 
 #include "Range.h"
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 #define RANGE_DELIM QStringLiteral(" ... ")
 

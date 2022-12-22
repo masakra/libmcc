@@ -37,7 +37,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 /** Диалог с сохранением позиции и другими удобствами
   */

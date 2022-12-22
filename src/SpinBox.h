@@ -36,7 +36,7 @@
 
 #include <QSpinBox>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 class LIBMCC_EXPORT SpinBox : public QSpinBox
 {

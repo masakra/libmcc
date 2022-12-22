@@ -37,7 +37,7 @@
 #include <QString>
 #include <initializer_list>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 class LIBMCC_EXPORT SettingsKey
 {

@@ -36,7 +36,7 @@
 
 #include <QtCore>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 #define QSETTINGS_s QSettings s( Settings::g_format, Settings::g_scope, \
     qApp->organizationName(), qApp->applicationName() );

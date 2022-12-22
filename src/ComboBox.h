@@ -36,7 +36,7 @@
 
 #include <QComboBox>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 /** \brief 
  */

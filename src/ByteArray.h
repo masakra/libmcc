@@ -38,7 +38,7 @@
 
 #include <QtEndian>
 
-#include "libmcc_global.h"
+#include "libmcc_export.h"
 
 class sreal;
 
