@@ -36,6 +36,7 @@
 
 #include "libmcc_export.h"
 
+class QPen;
 class QString;
 
 namespace mcc
@@ -46,5 +47,10 @@ namespace mcc
   /** Перевод миллисекунд в строку
     */
   QString LIBMCC_EXPORT msecsToString( int msecs );
+  /** Штрих-пунктирная линия
+    *
+    * ГОСТ на штрихпунктирную тонкую: https://docs.cntd.ru/document/1200003502
+    */
+  QPen LIBMCC_EXPORT dashDotPen();
 };
 

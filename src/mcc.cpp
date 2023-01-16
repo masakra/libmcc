@@ -36,6 +36,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QPen>
 
 QString
 mcc::secsToString( int secs )
@@ -99,5 +100,15 @@ mcc::msecsToString( int msecs )
                                        toStr( mins, QObject::tr("m") ) )
                                  .arg( secs )
                                  .arg( msecs, 3, 10, QLatin1Char('0') );
+}
+
+QPen LIBMCC_EXPORT
+mcc::dashDotPen()
+{
+  QPen pen( QColor("#60404040"), 1 );
+  pen.setDashPattern({ 2., 4., 60., 4.});
+  pen.setCapStyle( Qt::RoundCap );
+
+  return pen;
 }
 
