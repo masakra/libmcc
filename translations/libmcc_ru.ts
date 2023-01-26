@@ -22,30 +22,30 @@
         <translation>;;Все файлы (* *.*)</translation>
     </message>
     <message>
-        <location filename="../src/mcc.cpp" line="63"/>
+        <location filename="../src/mcc.cpp" line="64"/>
         <source>%1%2%3%4 s</source>
         <translation>%1%2%3%4 с</translation>
     </message>
     <message>
-        <location filename="../src/mcc.cpp" line="63"/>
-        <location filename="../src/mcc.cpp" line="97"/>
+        <location filename="../src/mcc.cpp" line="64"/>
+        <location filename="../src/mcc.cpp" line="98"/>
         <source>d</source>
         <translation>д</translation>
     </message>
     <message>
-        <location filename="../src/mcc.cpp" line="64"/>
-        <location filename="../src/mcc.cpp" line="98"/>
+        <location filename="../src/mcc.cpp" line="65"/>
+        <location filename="../src/mcc.cpp" line="99"/>
         <source>h</source>
         <translation>ч</translation>
     </message>
     <message>
-        <location filename="../src/mcc.cpp" line="65"/>
-        <location filename="../src/mcc.cpp" line="99"/>
+        <location filename="../src/mcc.cpp" line="66"/>
+        <location filename="../src/mcc.cpp" line="100"/>
         <source>m</source>
         <translation>м</translation>
     </message>
     <message>
-        <location filename="../src/mcc.cpp" line="97"/>
+        <location filename="../src/mcc.cpp" line="98"/>
         <source>%1%2%3%4.%5 s</source>
         <translation>%1%2%3%4.%5 с</translation>
     </message>

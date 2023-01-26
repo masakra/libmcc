@@ -34,6 +34,7 @@
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #include "GridLayout.h"
 
+#include "Frame.h"
 #include "Label.h"
 
 GridLayout::GridLayout( QWidget * parent/*= nullptr*/)
@@ -109,5 +110,22 @@ int
 GridLayout::nextColumn() const
 {
   return columnCount();
+}
+
+void
+GridLayout::addLayout( QLayout * layout, int row, int col/*= 0*/,
+    int row_span/*= 1*/, int col_span/*= 1*/, Qt::Alignment
+    al/*= Qt::Alignment()*/)
+{
+  const int r = realRow( row ),
+            c = realColumn( col );
+
+  QGridLayout::addLayout( layout, r, c, row_span, col_span, al );
+}
+
+void
+GridLayout::appendHorLine()
+{
+  addWidget( new Frame, Next, 0, 1, columnCount() );
 }
 

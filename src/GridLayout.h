@@ -68,6 +68,9 @@ class LIBMCC_EXPORT GridLayout : public QGridLayout
     void addWidget( QWidget * widget, int row, int col = 0, int row_span = 1,
         int col_span = 1, Qt::Alignment al = Qt::Alignment() );
 
+    void addLayout( QLayout * layout, int row, int col = 0, int row_span = 1,
+        int col_span = 1, Qt::Alignment al = Qt::Alignment() );
+
     int lastRow() const;
 
     int nextRow() const;
@@ -75,5 +78,7 @@ class LIBMCC_EXPORT GridLayout : public QGridLayout
     int lastColumn() const;
 
     int nextColumn() const;
+
+    void appendHorLine();
 };
 

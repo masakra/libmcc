@@ -57,6 +57,6 @@ UnderlineWidget::createWidgets( const QString & title )
   label->setEnabled( false );
 
   layout->addWidget( label, 1 );
-  layout->addWidget( new Frame, 1'000 );
+  layout->addWidget( new Frame, 1000 );
 }
 
