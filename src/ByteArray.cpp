@@ -55,9 +55,16 @@ ByteArray::bitAt( qsizetype offset ) const
   return at( byte ) & mask;
 }
 
+short
+ByteArray::shortAt( qsizetype offset ) const
+{
+  return valueAt< short >( offset );
+}
+
+
 sreal
 ByteArray::srealAt( qsizetype offset ) const
 {
-  return valueAt< short >( offset ) / 10.;
+  return shortAt( offset ) / 10.;
 }
 
