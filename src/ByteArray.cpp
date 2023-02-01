@@ -56,15 +56,17 @@ ByteArray::bitAt( qsizetype offset ) const
 }
 
 short
-ByteArray::shortAt( qsizetype offset ) const
+ByteArray::shortAt( qsizetype offset, QSysInfo::Endian endian/*=
+  QSysInfo::BigEndian*/) const
 {
-  return valueAt< short >( offset );
+  return valueAt< short >( offset, endian );
 }
 
 
 sreal
-ByteArray::srealAt( qsizetype offset ) const
+ByteArray::srealAt( qsizetype offset, QSysInfo::Endian endian/*=
+  QSysInfo::BigEndian*/) const
 {
-  return shortAt( offset ) / 10.;
+  return shortAt( offset, endian ) / 10.;
 }
 

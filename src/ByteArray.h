@@ -69,8 +69,10 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
 
     bool bitAt( qsizetype offset ) const;
 
-    short shortAt( qsizetype offset ) const;
+    short shortAt( qsizetype offset, QSysInfo::Endian endian =
+        QSysInfo::BigEndian ) const;
 
-    sreal srealAt( qsizetype offset ) const;
+    sreal srealAt( qsizetype offset, QSysInfo::Endian endian =
+        QSysInfo::BigEndian ) const;
 };
 
