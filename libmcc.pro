@@ -39,6 +39,7 @@ QT += widgets sql
 DEFINES += LIBMCC_LIBRARY
 
 HEADERS += \
+  src/BulbWidget.h \
   src/ByteArray.h \
   src/ByteVal.h \
   src/ColorDisplay.h \
@@ -66,6 +67,7 @@ HEADERS += \
   src/sreal.h
 
 SOURCES += \
+  src/BulbWidget.cpp \
   src/ByteArray.cpp \
   src/ColorDisplay.cpp \
   src/ColorPicker.cpp \
