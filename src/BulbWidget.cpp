@@ -86,10 +86,11 @@ BulbWidget::drawOnPainter( QPainter * painter, const QRect & rect,
   painter->setRenderHint( QPainter::Antialiasing );
 
   const int diam = qMin( rect.width(), rect.height() ) - 2,
-            x = ( rect.width() - diam ) / 2,
-            y = ( rect.height() - diam ) / 2;
+            x = ( rect.width() - diam ) / 2 + rect.x(),
+            y = ( rect.height() - diam ) / 2 + rect.y();
 
   painter->setPen( QPen( frame_color, 1.5 ) );
+  painter->setBrush( Qt::NoBrush );
   painter->drawEllipse( x, y, diam, diam );
 
   QRadialGradient grad( x + diam / 2.5, y + diam / 2.5, diam / 1.3 );
