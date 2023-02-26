@@ -61,6 +61,8 @@ class LIBMCC_EXPORT sreal
 
     bool operator < ( qreal val ) const;
 
+    bool operator < ( int val ) const;
+
     bool operator <= ( sreal other ) const;
 
     bool operator <= ( qreal other ) const;
@@ -73,6 +75,10 @@ class LIBMCC_EXPORT sreal
 
     bool operator >= ( sreal other ) const;
 
+    bool operator >= ( qreal other ) const;
+
+    bool operator >= ( int other ) const;
+
     sreal operator -= ( qreal val );
 
     sreal operator += ( qreal val );
@@ -81,9 +87,13 @@ class LIBMCC_EXPORT sreal
 
     sreal operator += ( sreal other );
 
+    sreal operator - ();    ///< Унарный -
+
     static sreal max();
 
     static sreal lowest();
+
+    QString toString() const;
 
   private:
     int m_value;

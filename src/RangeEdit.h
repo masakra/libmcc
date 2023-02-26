@@ -45,8 +45,6 @@
 #include "Range.h"
 #include "libmcc_export.h"
 
-#define RANGE_DELIM QStringLiteral(" ... ")
-
 class QStyleOptionViewItem;
 
 /** Для отрисовки диапазона в делегатах

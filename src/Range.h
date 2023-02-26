@@ -40,6 +40,10 @@
 
 #include <QString>
 
+#define RANGE_DELIM QStringLiteral(" ... ")
+
+class QPainter;
+
 template < class T >
 class Range
 {
@@ -137,8 +141,9 @@ class Range
 
     virtual QString toString() const
     {
-      return QString("%1 - %2")
+      return QString("%1%2%3")
         .arg( m_min )
+        .arg( RANGE_DELIM )
         .arg( m_max );
     };
 

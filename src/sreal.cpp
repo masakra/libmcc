@@ -42,7 +42,7 @@
 QDebug
 operator << ( QDebug debug, sreal val )
 {
-  debug.noquote() << QString::number( val, 'f', 1 );
+  debug.noquote() << val.toString();
 
   return debug;
 }
@@ -92,7 +92,13 @@ sreal::operator < ( sreal other ) const
 bool
 sreal::operator < ( qreal val ) const
 {
-  return operator qreal() < val;
+  return operator double () < val;
+}
+
+bool
+sreal::operator < ( int val ) const
+{
+  return operator double() < val;
 }
 
 bool
@@ -131,6 +137,19 @@ sreal::operator >= ( sreal other ) const
   return m_value >= other.m_value;
 }
 
+bool
+sreal::operator >= ( qreal other ) const
+{
+  return operator double() >= other;
+}
+
+bool
+sreal::operator >= ( int other ) const
+{
+  return operator double() >= other;
+}
+
+
 sreal
 sreal::operator -= ( qreal val )
 {
@@ -160,6 +179,12 @@ sreal::operator += ( sreal other )
 }
 
 sreal
+sreal::operator - ()    ///< Унарный -
+{
+  return -( operator double() );
+}
+
+sreal
 sreal::max() // static
 {
   return std::numeric_limits< short >::max() / 10.;
@@ -169,5 +194,11 @@ sreal
 sreal::lowest() // static
 {
   return std::numeric_limits< short >::lowest() / 10.;
+}
+
+QString
+sreal::toString() const
+{
+  return QString::number( operator double(), 'f', 1 );
 }
 
