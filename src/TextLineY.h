@@ -48,6 +48,8 @@ class LIBMCC_EXPORT TextLineY
     explicit TextLineY( const QFont & font, qreal factor = 1.5,
         qreal init = .0 );
 
+    void reinit( qreal init );
+
     operator qreal() const;
 
     operator int() const;

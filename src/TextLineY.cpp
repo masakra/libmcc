@@ -45,6 +45,12 @@ TextLineY::TextLineY( const QFont & font, qreal factor/*= 1.5*/,
   m_line_height = fm.lineSpacing() * factor;
 };
 
+void
+TextLineY::reinit( qreal init )
+{
+  m_current = init;
+}
+
 TextLineY::operator qreal() const
 {
   return m_current;
