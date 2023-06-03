@@ -78,6 +78,18 @@ sreal::operator == ( sreal other ) const
   return m_value == other.m_value;
 }
 
+bool
+sreal::operator == ( qreal other ) const
+{
+  return operator double() == other;
+}
+
+bool
+sreal::operator == ( int other ) const
+{
+  return operator double() == other;
+}
+
 bool sreal::operator != ( sreal other ) const
 {
   return m_value != other.m_value;
