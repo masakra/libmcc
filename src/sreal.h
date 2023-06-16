@@ -98,6 +98,9 @@ class LIBMCC_EXPORT sreal
     static sreal lowest();
 
     QString toString() const;
+    /** Имеет дробную часть
+      */
+    bool hasDecimal() const;
 
   private:
     int m_value;

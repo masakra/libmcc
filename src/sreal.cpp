@@ -214,3 +214,9 @@ sreal::toString() const
   return QString::number( operator double(), 'f', 1 );
 }
 
+bool
+sreal::hasDecimal() const
+{
+  return m_value % 10;
+}
+
