@@ -72,7 +72,15 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
     short shortAt( qsizetype offset, QSysInfo::Endian endian =
         QSysInfo::BigEndian ) const;
 
+    void setShortAt( short value, qsizetype offset, QSysInfo::Endian endian =
+        QSysInfo::BigEndian );
+
     sreal srealAt( qsizetype offset, QSysInfo::Endian endian =
         QSysInfo::BigEndian ) const;
+
+    void setSrealAt( sreal value, qsizetype offset, QSysInfo::Endian endian =
+        QSysInfo::BigEndian );
+
+    ByteArray toHex( char separator = '.') const;
 };
 

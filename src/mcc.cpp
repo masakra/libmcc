@@ -105,9 +105,9 @@ mcc::msecsToString( int msecs )
 QPen LIBMCC_EXPORT
 mcc::dashDotPen()
 {
-  QPen pen( QColor("#60404040"), 1 );
-  pen.setDashPattern({ 2., 4., 60., 4.});
-  pen.setCapStyle( Qt::RoundCap );
+  QPen pen( QColor("#60404040"), .0 );
+  pen.setDashPattern({ 60., 4., 2., 4. });
+  pen.setCapStyle( Qt::FlatCap );
 
   return pen;
 }

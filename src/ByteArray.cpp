@@ -62,11 +62,31 @@ ByteArray::shortAt( qsizetype offset, QSysInfo::Endian endian/*=
   return valueAt< short >( offset, endian );
 }
 
+void
+ByteArray::setShortAt( short value, qsizetype offset, QSysInfo::Endian endian/*=
+  QSysInfo::BigEndian*/)
+{
+  setValueAt< short >( value, offset, endian );
+}
 
 sreal
 ByteArray::srealAt( qsizetype offset, QSysInfo::Endian endian/*=
   QSysInfo::BigEndian*/) const
 {
   return shortAt( offset, endian ) / 10.;
+}
+
+void
+ByteArray::setSrealAt( sreal value, qsizetype offset, QSysInfo::Endian endian/*=
+  QSysInfo::BigEndian*/)
+{
+  setValueAt< short >( qRound( value * 10 ), offset, endian );
+}
+
+
+ByteArray
+ByteArray::toHex( char separator/*= '.'*/)const
+{
+  return QByteArray::toHex( separator );
 }
 
