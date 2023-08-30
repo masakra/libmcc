@@ -53,6 +53,8 @@ class LIBMCC_EXPORT BulbWidget : public QWidget
 
     void setMaximumSize( int size );
 
+    void setSizesRange( int min, int max );
+
     void paintEvent( QPaintEvent * event ) override final;
 
     static void drawOnPainter( QPainter * painter, const QRect & rect,

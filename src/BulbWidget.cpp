@@ -69,6 +69,13 @@ BulbWidget::setMaximumSize( int size )
 }
 
 void
+BulbWidget::setSizesRange( int min, int max )
+{
+  setMinimumSize( min );
+  setMaximumSize( max );
+}
+
+void
 BulbWidget::paintEvent( QPaintEvent * event ) // override final
 {
   QWidget::paintEvent( event );
