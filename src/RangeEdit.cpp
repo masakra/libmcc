@@ -43,12 +43,12 @@ void drawRange( QPainter * painter, const QStyleOptionViewItem & option,
     const QString & min, const QString & max )
 {
   const int delim_width = option.fontMetrics.horizontalAdvance( RANGE_DELIM ),
-          min_width = option.fontMetrics.horizontalAdvance( min ),
-          x = ( option.rect.width() - delim_width ) / 2 - min_width +
-            option.rect.left();
+            min_width = option.fontMetrics.horizontalAdvance( min ),
+            x = ( option.rect.width() - delim_width ) / 2 - min_width +
+              option.rect.left();
   painter->setPen( option.palette.windowText().color() );
   painter->drawText( x, option.rect.top(), option.rect.width(),
-      option.rect.height(), Qt::AlignLeft | Qt::AlignVCenter, QString("%1%2%3")
-                                          .arg( min, RANGE_DELIM, max ) );
+      option.rect.height(), Qt::AlignLeft | Qt::AlignVCenter,
+      QStringLiteral("%1%2%3").arg( min, RANGE_DELIM, max ) );
 }
 

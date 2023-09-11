@@ -102,7 +102,7 @@ class RangeEdit : public QFrame
     {
       const auto fw = style()->pixelMetric( QStyle::PM_SpinBoxFrameWidth );
 
-      QHBoxLayout * layout = new QHBoxLayout( this );
+      auto layout = new QHBoxLayout( this );
       layout->setContentsMargins( fw, fw, fw, fw );
       layout->setSpacing( 0 );
 
