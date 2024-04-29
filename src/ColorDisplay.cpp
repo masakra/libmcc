@@ -136,14 +136,14 @@ ColorDisplay::contextMenu( const QPoint & pos )
 	menu.addAction( QIcon::fromTheme("edit-copy"), tr("Copy color"),
       this, SLOT( copyColorToClipboard() ) );
 
-	const QString colorName = qApp->clipboard()->text();
+	const QString color_name = qApp->clipboard()->text();
 
-	if ( QColor::isValidColor( colorName ) ) {
-		const QColor color( colorName );
+	if ( QColor::isValidColorName( color_name ) ) {
+		const QColor color( color_name );
 		QPixmap pixmap( 22, 22 );
 		pixmap.fill( color );
 
-		menu.addAction( QIcon( pixmap ), tr("Paste color <%1>").arg( colorName ),
+		menu.addAction( QIcon( pixmap ), tr("Paste color <%1>").arg( color_name ),
         this, SLOT( pasteColorFromClipboard() ) );
 	}
 
@@ -161,7 +161,7 @@ ColorDisplay::pasteColorFromClipboard()	// private slot
 {
 	const QString colorName = qApp->clipboard()->text();
 
-	if ( QColor::isValidColor( colorName ) ) {
+	if ( QColor::isValidColorName( colorName ) ) {
 		m_color = QColor( colorName );
 		update();
 	}
