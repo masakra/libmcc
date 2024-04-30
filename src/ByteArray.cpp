@@ -36,6 +36,9 @@
 
 #include "sreal.h"
 
+QSysInfo::Endian
+ByteArray::s_endian{ QSysInfo::BigEndian };
+
 ByteArray::ByteArray( const QByteArray & ba )
   : QByteArray( ba )
 {
@@ -44,6 +47,12 @@ ByteArray::ByteArray( const QByteArray & ba )
 ByteArray::ByteArray( qsizetype size, char ch/*= '\0'*/)
   : QByteArray( size, ch )
 {
+}
+
+void
+ByteArray::setDefaultEndian( QSysInfo::Endian endian ) // static
+{
+  s_endian = endian;
 }
 
 bool
@@ -56,29 +65,29 @@ ByteArray::bitAt( qsizetype offset ) const
 }
 
 short
-ByteArray::shortAt( qsizetype offset, QSysInfo::Endian endian/*=
-  QSysInfo::BigEndian*/) const
+ByteArray::shortAt( qsizetype offset, QSysInfo::Endian endian/*= s_endian*/)
+  const
 {
   return valueAt< short >( offset, endian );
 }
 
 void
 ByteArray::setShortAt( short value, qsizetype offset, QSysInfo::Endian endian/*=
-  QSysInfo::BigEndian*/)
+  s_endian*/)
 {
   setValueAt< short >( value, offset, endian );
 }
 
 sreal
-ByteArray::srealAt( qsizetype offset, QSysInfo::Endian endian/*=
-  QSysInfo::BigEndian*/) const
+ByteArray::srealAt( qsizetype offset, QSysInfo::Endian endian/*= s_endian*/)
+  const
 {
   return shortAt( offset, endian ) / 10.;
 }
 
 void
 ByteArray::setSrealAt( sreal value, qsizetype offset, QSysInfo::Endian endian/*=
-  QSysInfo::BigEndian*/)
+  s_endian*/)
 {
   setValueAt< short >( qRound( value * 10 ), offset, endian );
 }

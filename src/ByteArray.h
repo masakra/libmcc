@@ -44,14 +44,20 @@ class sreal;
 
 class LIBMCC_EXPORT ByteArray : public QByteArray
 {
+  private:
+    static QSysInfo::Endian s_endian;
+
   public:
     using QByteArray::QByteArray;
     ByteArray( const QByteArray & ba );
     explicit ByteArray( qsizetype size, char ch = '\0');
 
+    /** Устанавливает \a endian по-умолчанию для всех опеаций
+      */
+    static void setDefaultEndian( QSysInfo::Endian endian );
+
     template< class T >
-    T valueAt( qsizetype offset, QSysInfo::Endian endian =
-        QSysInfo::BigEndian ) const
+    T valueAt( qsizetype offset, QSysInfo::Endian endian = s_endian ) const
     {
       return endian == QSysInfo::BigEndian ?
                                   qFromBigEndian< T >( data() + offset ) :
@@ -60,7 +66,7 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
 
     template< class T >
     void setValueAt( T val, qsizetype offset, QSysInfo::Endian endian =
-        QSysInfo::BigEndian )
+        s_endian )
     {
       endian == QSysInfo::BigEndian ?
                                   qToBigEndian< T >( val, data() + offset ) :
@@ -69,17 +75,15 @@ class LIBMCC_EXPORT ByteArray : public QByteArray
 
     bool bitAt( qsizetype offset ) const;
 
-    short shortAt( qsizetype offset, QSysInfo::Endian endian =
-        QSysInfo::BigEndian ) const;
+    short shortAt( qsizetype offset, QSysInfo::Endian endian = s_endian ) const;
 
     void setShortAt( short value, qsizetype offset, QSysInfo::Endian endian =
-        QSysInfo::BigEndian );
+        s_endian );
 
-    sreal srealAt( qsizetype offset, QSysInfo::Endian endian =
-        QSysInfo::BigEndian ) const;
+    sreal srealAt( qsizetype offset, QSysInfo::Endian endian = s_endian ) const;
 
     void setSrealAt( sreal value, qsizetype offset, QSysInfo::Endian endian =
-        QSysInfo::BigEndian );
+        s_endian );
 
     ByteArray toHex( char separator = '.') const;
 };
