@@ -59,6 +59,7 @@ HEADERS += \
   src/SettingsKey.h \
   src/SpinBox.h \
   src/Splitter.h \
+  src/Stgs.h \
   src/TextLineY.h \
   src/UnderlineWidget.h \
   src/Version.h \
@@ -84,6 +85,7 @@ SOURCES += \
   src/SettingsKey.cpp \
   src/SpinBox.cpp \
   src/Splitter.cpp \
+  src/Stgs.cpp \
   src/TextLineY.cpp \
   src/UnderlineWidget.cpp \
   src/Version.cpp \
