@@ -56,11 +56,6 @@ TextLineY::operator qreal() const
   return m_current;
 }
 
-TextLineY::operator int() const
-{
-  return qRound( m_current );
-}
-
 qreal
 TextLineY::operator ++ ()
 {
@@ -76,7 +71,7 @@ TextLineY::operator ++ ( int )
 }
 
 qreal
- TextLineY::operator += ( qreal val )
+TextLineY::operator += ( qreal val )
 {
   return m_current += val;
 }

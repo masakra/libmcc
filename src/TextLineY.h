@@ -52,8 +52,6 @@ class LIBMCC_EXPORT TextLineY
 
     operator qreal() const;
 
-    operator int() const;
-
     qreal operator ++ ();
 
     qreal operator ++ ( int );
