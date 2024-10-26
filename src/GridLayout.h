@@ -79,6 +79,6 @@ class LIBMCC_EXPORT GridLayout : public QGridLayout
 
     int nextColumn() const;
 
-    void appendHorLine();
+    void appendHorLine( const QString & text = QString() );
 };
 

@@ -124,8 +124,18 @@ GridLayout::addLayout( QLayout * layout, int row, int col/*= 0*/,
 }
 
 void
-GridLayout::appendHorLine()
+GridLayout::appendHorLine( const QString & text/*= QString()*/)
 {
-  addWidget( new Frame, Next, 0, 1, columnCount() );
+  if ( text.isEmpty() )
+    addWidget( new Frame, Next, 0, 1, columnCount() );
+  else {
+    const auto layout = new QHBoxLayout;
+    layout->addWidget( new QLabel( text ) );
+    const auto frame = new Frame;
+    layout->addWidget( frame );
+    layout->setStretchFactor( frame, 9e3 );
+
+    addLayout( layout, Next, 0, 1, columnCount() );
+  }
 }
 
